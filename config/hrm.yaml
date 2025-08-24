@@ -1,0 +1,48 @@
+# HRM Model Configuration
+# Simplified configuration for Hierarchical Reasoning Model
+
+model:
+  # Model architecture
+  name: "HierarchicalReasoningModel"
+  hidden_size: 512
+  num_heads: 8
+  expansion: 4
+  
+  # Hierarchical structure
+  H_cycles: 2  # High-level (slow) reasoning cycles
+  L_cycles: 2  # Low-level (fast) reasoning cycles
+  H_layers: 4  # High-level layers
+  L_layers: 4  # Low-level layers
+  
+  # Adaptive Compute Time (ACT)
+  halt_max_steps: 16
+  halt_exploration_prob: 0.1
+  
+  # Embeddings
+  puzzle_emb_ndim: 512  # Same as hidden_size
+  pos_encodings: "rope"  # Rotary position embeddings
+
+# Loss configuration
+loss:
+  name: "ACTLoss"
+  type: "stablemax_cross_entropy"
+  
+# Training configuration
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 1e-4
+  weight_decay: 1.0
+  
+  # Puzzle embedding specific learning rate
+  puzzle_emb_lr: 1e-4
+  puzzle_emb_weight_decay: 1.0
+  
+  # Learning rate scheduling
+  lr_min_ratio: 0.1
+  warmup_steps: 1000
+
+# Evaluation configuration
+evaluation:
+  batch_size: 32
+  eval_interval: 100  # Evaluate every N steps

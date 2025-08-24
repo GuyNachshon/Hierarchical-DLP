@@ -1,0 +1,75 @@
+# DLP Model Configuration
+# Simplified configuration for HRM Data Loss Prevention extension
+
+model:
+  # Base HRM architecture
+  name: "HRMDLP"
+  hidden_size: 384
+  num_heads: 6
+  expansion: 4.0
+  
+  # Hierarchical structure
+  H_cycles: 2  # High-level cycles
+  L_cycles: 2  # Low-level cycles
+  H_layers: 4  # High-level layers  
+  L_layers: 4  # Low-level layers
+  
+  # DLP-specific architecture
+  num_doc_labels: 4    # Document-level classification heads
+  num_bio_tags: 21     # BIO tag types for token classification
+  memory_dim: 256      # Memory summary vector dimension
+  use_fusion_gates: true
+  
+  # Position encodings
+  pos_encodings: "rope"
+  
+  # Training behavior
+  use_act: false  # Disabled for deterministic latency in production
+  forward_dtype: "bfloat16"
+
+# Data configuration  
+data:
+  data_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs"
+  # Note: train_examples_augmented.jsonl is empty, so using val/test files
+  train_file: "val_examples_augmented.jsonl"  # Using val file as train since train is empty
+  val_file: "test_examples_augmented.jsonl"   # Using test file as validation
+  test_file: "test_examples_augmented.jsonl"  # Test file
+  max_length: 1024
+  tokenizer_path: null  # Use simple tokenizer if not provided
+
+# Loss configuration
+loss:
+  # Multi-task loss weights
+  doc_loss_weight: 1.0        # Document-level BCE loss
+  span_loss_weight: 1.0       # Token-level CE loss
+  mask_denoise_weight: 0.3    # Auxiliary mask-denoise objective
+  section_shuffle_weight: 0.2 # Auxiliary section-shuffle objective
+  label_smoothing: 0.05
+
+# Training configuration
+training:
+  epochs: 2
+  batch_size: 32  # Will be scaled by number of GPUs
+  global_batch_size: 768
+  learning_rate: 3e-4
+  weight_decay: 0.02
+  
+  # Optimizer settings
+  beta1: 0.9
+  beta2: 0.95
+  
+  # Learning rate scheduling
+  lr_min_ratio: 0.1
+  lr_warmup_steps: 3000
+
+# Evaluation configuration  
+evaluation:
+  batch_size: 32
+  eval_interval: 1000
+  checkpoint_every_eval: true
+  save_outputs: []  # List of splits to save detailed outputs for
+
+# System configuration
+system:
+  seed: 42
+  num_workers: 4

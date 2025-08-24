@@ -1,0 +1,734 @@
+{
+  "data": [
+    {
+      "id": "msgbatch_01CsQCddN9QZ1x9rMYCFe85u",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 49,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-22T08:26:51.505407+00:00",
+      "created_at": "2025-08-22T08:24:59.798275+00:00",
+      "expires_at": "2025-08-23T08:24:59.798275+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01CsQCddN9QZ1x9rMYCFe85u/results"
+    },
+    {
+      "id": "msgbatch_01QwNQjWmp1avM5aBwihgFs1",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 172,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-22T08:26:56.257496+00:00",
+      "created_at": "2025-08-22T08:24:59.425207+00:00",
+      "expires_at": "2025-08-23T08:24:59.425207+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01QwNQjWmp1avM5aBwihgFs1/results"
+    },
+    {
+      "id": "msgbatch_01EcmssMRgW7mseLbxnNrQrQ",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 145,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T18:10:59.969490+00:00",
+      "created_at": "2025-08-21T18:09:36.816639+00:00",
+      "expires_at": "2025-08-22T18:09:36.816639+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01EcmssMRgW7mseLbxnNrQrQ/results"
+    },
+    {
+      "id": "msgbatch_011q9mkKx3pUkxtQUE5JNraw",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 75,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T18:10:59.696349+00:00",
+      "created_at": "2025-08-21T18:09:36.480540+00:00",
+      "expires_at": "2025-08-22T18:09:36.480540+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_011q9mkKx3pUkxtQUE5JNraw/results"
+    },
+    {
+      "id": "msgbatch_01HjKSAJVVADRKEq6vJZJYGS",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 14,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T17:22:34.878889+00:00",
+      "created_at": "2025-08-21T17:20:50.693621+00:00",
+      "expires_at": "2025-08-22T17:20:50.693621+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01HjKSAJVVADRKEq6vJZJYGS/results"
+    },
+    {
+      "id": "msgbatch_019MMa28455MrYzDPiorFRru",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 16,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T17:22:34.949925+00:00",
+      "created_at": "2025-08-21T17:20:50.692411+00:00",
+      "expires_at": "2025-08-22T17:20:50.692411+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_019MMa28455MrYzDPiorFRru/results"
+    },
+    {
+      "id": "msgbatch_012tFitDUxmFAWthNBViFJ8H",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 21,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T17:22:34.930259+00:00",
+      "created_at": "2025-08-21T17:20:50.687829+00:00",
+      "expires_at": "2025-08-22T17:20:50.687829+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_012tFitDUxmFAWthNBViFJ8H/results"
+    },
+    {
+      "id": "msgbatch_01DGTrupUMEkfk4ZW8YsmGeJ",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 19,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T17:22:34.877656+00:00",
+      "created_at": "2025-08-21T17:20:43.894430+00:00",
+      "expires_at": "2025-08-22T17:20:43.894430+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01DGTrupUMEkfk4ZW8YsmGeJ/results"
+    },
+    {
+      "id": "msgbatch_01MatHKX9aug39VP4Tk2kVHU",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 11,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T15:53:10.592544+00:00",
+      "created_at": "2025-08-21T15:51:50.816313+00:00",
+      "expires_at": "2025-08-22T15:51:50.816313+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01MatHKX9aug39VP4Tk2kVHU/results"
+    },
+    {
+      "id": "msgbatch_01X5qDgph5V2LPpJa1Lg2DnK",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 10,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T15:53:10.091927+00:00",
+      "created_at": "2025-08-21T15:51:36.463592+00:00",
+      "expires_at": "2025-08-22T15:51:36.463592+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01X5qDgph5V2LPpJa1Lg2DnK/results"
+    },
+    {
+      "id": "msgbatch_014g4aaeY9GzgHjyqEyiDhgV",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 11,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T15:17:03.733897+00:00",
+      "created_at": "2025-08-21T15:16:14.539515+00:00",
+      "expires_at": "2025-08-22T15:16:14.539515+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_014g4aaeY9GzgHjyqEyiDhgV/results"
+    },
+    {
+      "id": "msgbatch_01HftmyQwfwDZbusCj2vvmYt",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 10,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:48:38.124520+00:00",
+      "created_at": "2025-08-21T13:46:59.261575+00:00",
+      "expires_at": "2025-08-22T13:46:59.261575+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01HftmyQwfwDZbusCj2vvmYt/results"
+    },
+    {
+      "id": "msgbatch_018jMDWqG219ZWZa84FJ6TwX",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 14,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:02:00.464174+00:00",
+      "created_at": "2025-08-21T13:00:28.681526+00:00",
+      "expires_at": "2025-08-22T13:00:28.681526+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_018jMDWqG219ZWZa84FJ6TwX/results"
+    },
+    {
+      "id": "msgbatch_01FNpGDbWsNfLF2RTZxnUgLM",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 10,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:01:56.654623+00:00",
+      "created_at": "2025-08-21T13:00:21.362111+00:00",
+      "expires_at": "2025-08-22T13:00:21.362111+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01FNpGDbWsNfLF2RTZxnUgLM/results"
+    },
+    {
+      "id": "msgbatch_01FG9ytaUaDrF4sqG2yZeQt8",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 49,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:00:54.298139+00:00",
+      "created_at": "2025-08-21T13:00:06.950654+00:00",
+      "expires_at": "2025-08-22T13:00:06.950654+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01FG9ytaUaDrF4sqG2yZeQt8/results"
+    },
+    {
+      "id": "msgbatch_01EzMmiVPZBS6JGgx1cGXxHK",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 40,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:00:53.852373+00:00",
+      "created_at": "2025-08-21T12:59:58.714866+00:00",
+      "expires_at": "2025-08-22T12:59:58.714866+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01EzMmiVPZBS6JGgx1cGXxHK/results"
+    },
+    {
+      "id": "msgbatch_01BdiARiz9r71idVF8YQCUk4",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 23,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-20T23:08:55.005826+00:00",
+      "created_at": "2025-08-20T23:07:57.867277+00:00",
+      "expires_at": "2025-08-21T23:07:57.867277+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01BdiARiz9r71idVF8YQCUk4/results"
+    },
+    {
+      "id": "msgbatch_01DN8jKWs9MDDNSdx2jpQf1U",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 3,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 8
+      },
+      "ended_at": "2025-08-21T23:06:25.951264+00:00",
+      "created_at": "2025-08-20T23:06:25.125237+00:00",
+      "expires_at": "2025-08-21T23:06:25.125237+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01DN8jKWs9MDDNSdx2jpQf1U/results"
+    },
+    {
+      "id": "msgbatch_01Paj3h3P3KGUb72a8JMqRMc",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 13,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-20T23:07:19.834363+00:00",
+      "created_at": "2025-08-20T23:06:10.406640+00:00",
+      "expires_at": "2025-08-21T23:06:10.406640+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01Paj3h3P3KGUb72a8JMqRMc/results"
+    },
+    {
+      "id": "msgbatch_01HsmnAeDafF6wphr6smTU8A",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 12,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-20T22:48:23.076323+00:00",
+      "created_at": "2025-08-20T22:46:58.419808+00:00",
+      "expires_at": "2025-08-21T22:46:58.419808+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01HsmnAeDafF6wphr6smTU8A/results"
+    }
+  ],
+  "has_more": true,
+  "first_id": "msgbatch_01CsQCddN9QZ1x9rMYCFe85u",
+  "last_id": "msgbatch_01HsmnAeDafF6wphr6smTU8A"
+}
+{
+  "data": [
+    {
+      "id": "msgbatch_01CsQCddN9QZ1x9rMYCFe85u",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 49,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-22T08:26:51.505407+00:00",
+      "created_at": "2025-08-22T08:24:59.798275+00:00",
+      "expires_at": "2025-08-23T08:24:59.798275+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01CsQCddN9QZ1x9rMYCFe85u/results"
+    },
+    {
+      "id": "msgbatch_01QwNQjWmp1avM5aBwihgFs1",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 172,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-22T08:26:56.257496+00:00",
+      "created_at": "2025-08-22T08:24:59.425207+00:00",
+      "expires_at": "2025-08-23T08:24:59.425207+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01QwNQjWmp1avM5aBwihgFs1/results"
+    },
+    {
+      "id": "msgbatch_01EcmssMRgW7mseLbxnNrQrQ",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 145,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T18:10:59.969490+00:00",
+      "created_at": "2025-08-21T18:09:36.816639+00:00",
+      "expires_at": "2025-08-22T18:09:36.816639+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01EcmssMRgW7mseLbxnNrQrQ/results"
+    },
+    {
+      "id": "msgbatch_011q9mkKx3pUkxtQUE5JNraw",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 75,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T18:10:59.696349+00:00",
+      "created_at": "2025-08-21T18:09:36.480540+00:00",
+      "expires_at": "2025-08-22T18:09:36.480540+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_011q9mkKx3pUkxtQUE5JNraw/results"
+    },
+    {
+      "id": "msgbatch_01HjKSAJVVADRKEq6vJZJYGS",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 14,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T17:22:34.878889+00:00",
+      "created_at": "2025-08-21T17:20:50.693621+00:00",
+      "expires_at": "2025-08-22T17:20:50.693621+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01HjKSAJVVADRKEq6vJZJYGS/results"
+    },
+    {
+      "id": "msgbatch_019MMa28455MrYzDPiorFRru",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 16,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T17:22:34.949925+00:00",
+      "created_at": "2025-08-21T17:20:50.692411+00:00",
+      "expires_at": "2025-08-22T17:20:50.692411+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_019MMa28455MrYzDPiorFRru/results"
+    },
+    {
+      "id": "msgbatch_012tFitDUxmFAWthNBViFJ8H",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 21,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T17:22:34.930259+00:00",
+      "created_at": "2025-08-21T17:20:50.687829+00:00",
+      "expires_at": "2025-08-22T17:20:50.687829+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_012tFitDUxmFAWthNBViFJ8H/results"
+    },
+    {
+      "id": "msgbatch_01DGTrupUMEkfk4ZW8YsmGeJ",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 19,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T17:22:34.877656+00:00",
+      "created_at": "2025-08-21T17:20:43.894430+00:00",
+      "expires_at": "2025-08-22T17:20:43.894430+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01DGTrupUMEkfk4ZW8YsmGeJ/results"
+    },
+    {
+      "id": "msgbatch_01MatHKX9aug39VP4Tk2kVHU",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 11,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T15:53:10.592544+00:00",
+      "created_at": "2025-08-21T15:51:50.816313+00:00",
+      "expires_at": "2025-08-22T15:51:50.816313+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01MatHKX9aug39VP4Tk2kVHU/results"
+    },
+    {
+      "id": "msgbatch_01X5qDgph5V2LPpJa1Lg2DnK",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 10,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T15:53:10.091927+00:00",
+      "created_at": "2025-08-21T15:51:36.463592+00:00",
+      "expires_at": "2025-08-22T15:51:36.463592+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01X5qDgph5V2LPpJa1Lg2DnK/results"
+    },
+    {
+      "id": "msgbatch_014g4aaeY9GzgHjyqEyiDhgV",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 11,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T15:17:03.733897+00:00",
+      "created_at": "2025-08-21T15:16:14.539515+00:00",
+      "expires_at": "2025-08-22T15:16:14.539515+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_014g4aaeY9GzgHjyqEyiDhgV/results"
+    },
+    {
+      "id": "msgbatch_01HftmyQwfwDZbusCj2vvmYt",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 10,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:48:38.124520+00:00",
+      "created_at": "2025-08-21T13:46:59.261575+00:00",
+      "expires_at": "2025-08-22T13:46:59.261575+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01HftmyQwfwDZbusCj2vvmYt/results"
+    },
+    {
+      "id": "msgbatch_018jMDWqG219ZWZa84FJ6TwX",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 14,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:02:00.464174+00:00",
+      "created_at": "2025-08-21T13:00:28.681526+00:00",
+      "expires_at": "2025-08-22T13:00:28.681526+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_018jMDWqG219ZWZa84FJ6TwX/results"
+    },
+    {
+      "id": "msgbatch_01FNpGDbWsNfLF2RTZxnUgLM",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 10,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:01:56.654623+00:00",
+      "created_at": "2025-08-21T13:00:21.362111+00:00",
+      "expires_at": "2025-08-22T13:00:21.362111+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01FNpGDbWsNfLF2RTZxnUgLM/results"
+    },
+    {
+      "id": "msgbatch_01FG9ytaUaDrF4sqG2yZeQt8",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 49,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:00:54.298139+00:00",
+      "created_at": "2025-08-21T13:00:06.950654+00:00",
+      "expires_at": "2025-08-22T13:00:06.950654+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01FG9ytaUaDrF4sqG2yZeQt8/results"
+    },
+    {
+      "id": "msgbatch_01EzMmiVPZBS6JGgx1cGXxHK",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 40,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-21T13:00:53.852373+00:00",
+      "created_at": "2025-08-21T12:59:58.714866+00:00",
+      "expires_at": "2025-08-22T12:59:58.714866+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01EzMmiVPZBS6JGgx1cGXxHK/results"
+    },
+    {
+      "id": "msgbatch_01BdiARiz9r71idVF8YQCUk4",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 23,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-20T23:08:55.005826+00:00",
+      "created_at": "2025-08-20T23:07:57.867277+00:00",
+      "expires_at": "2025-08-21T23:07:57.867277+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01BdiARiz9r71idVF8YQCUk4/results"
+    },
+    {
+      "id": "msgbatch_01DN8jKWs9MDDNSdx2jpQf1U",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 3,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 8
+      },
+      "ended_at": "2025-08-21T23:06:25.951264+00:00",
+      "created_at": "2025-08-20T23:06:25.125237+00:00",
+      "expires_at": "2025-08-21T23:06:25.125237+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01DN8jKWs9MDDNSdx2jpQf1U/results"
+    },
+    {
+      "id": "msgbatch_01Paj3h3P3KGUb72a8JMqRMc",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 13,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-20T23:07:19.834363+00:00",
+      "created_at": "2025-08-20T23:06:10.406640+00:00",
+      "expires_at": "2025-08-21T23:06:10.406640+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01Paj3h3P3KGUb72a8JMqRMc/results"
+    },
+    {
+      "id": "msgbatch_01HsmnAeDafF6wphr6smTU8A",
+      "type": "message_batch",
+      "processing_status": "ended",
+      "request_counts": {
+        "processing": 0,
+        "succeeded": 12,
+        "errored": 0,
+        "canceled": 0,
+        "expired": 0
+      },
+      "ended_at": "2025-08-20T22:48:23.076323+00:00",
+      "created_at": "2025-08-20T22:46:58.419808+00:00",
+      "expires_at": "2025-08-21T22:46:58.419808+00:00",
+      "archived_at": null,
+      "cancel_initiated_at": null,
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01HsmnAeDafF6wphr6smTU8A/results"
+    }
+  ],
+  "has_more": true,
+  "first_id": "msgbatch_01CsQCddN9QZ1x9rMYCFe85u",
+  "last_id": "msgbatch_01HsmnAeDafF6wphr6smTU8A"
+}
