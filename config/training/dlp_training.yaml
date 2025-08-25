@@ -1,0 +1,67 @@
+# DLP Training Configuration
+
+# Data configuration
+data:
+  # Use existing processed data
+  train_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/train_examples_augmented.jsonl"
+  val_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/val_examples_augmented.jsonl"  
+  test_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/test_examples_augmented.jsonl"
+  
+  # Fallback paths if augmented data is empty
+  fallback_train_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/val_examples.jsonl"
+  fallback_val_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/test_examples.jsonl"
+  
+  # Data processing
+  max_length: 1024
+  tokenizer_path: null  # Use simple tokenizer if not provided
+  dsl_serialization: true
+  
+# Training parameters
+training:
+  epochs: 2
+  learning_rate: 3e-4
+  weight_decay: 0.02
+  
+  # Batch settings optimized for DLP
+  per_device_batch_size: 16  
+  gradient_accumulation_steps: 6  # Effective batch size: 16 * 6 * num_gpus
+  
+  # Learning rate scheduling
+  lr_warmup_steps: 3000
+  lr_min_ratio: 0.1
+  
+  # Gradient management
+  max_grad_norm: 1.0
+  
+  # Mixed precision
+  use_amp: true
+  amp_dtype: "bfloat16"
+  
+  # Checkpointing and evaluation
+  save_every_n_steps: 1000
+  eval_every_n_steps: 500
+  log_every_n_steps: 50
+  
+  # Early stopping
+  early_stopping_patience: 3
+  early_stopping_metric: "eval/total_loss"
+  early_stopping_mode: "min"
+
+# Model configuration reference
+model_config: "config/models/dlp.yaml"
+
+# Experiment tracking
+experiment:
+  project_name: "hrm-dlp-training"
+  run_name: null  # Auto-generated if not provided
+  tags: ["multi-task", "dlp", "production"]
+  
+# Output directories
+output:
+  checkpoint_dir: "checkpoints/dlp_training"
+  results_dir: "results/dlp_training" 
+  logs_dir: "logs/dlp_training"
+
+# Evaluation settings
+evaluation:
+  batch_size: 32

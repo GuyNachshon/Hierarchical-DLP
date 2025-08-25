@@ -1,0 +1,27 @@
+# DLP Model Configuration
+
+model:
+  vocab_size: 16000
+  d_model: 384
+  n_layers: 8
+  n_heads: 6
+  
+  # DLP-specific settings
+  num_doc_labels: 4
+  num_bio_tags: 21
+  enable_fusion_gates: true
+  
+  # Architecture details
+  max_position_embeddings: 1024
+  intermediate_size: 1536
+  hidden_dropout_prob: 0.1
+  attention_dropout_prob: 0.1
+  
+# Document labels for classification
+doc_labels: ["sensitivity", "exposure", "context", "obfuscation"]
+
+# Loss configuration
+loss:
+  doc_weight: 1.0
+  span_weight: 1.0
+  auxiliary_weight: 0.3

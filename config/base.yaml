@@ -1,0 +1,17 @@
+# Base Configuration for HRM-DLP
+# Common settings shared across all models and training runs
+
+system:
+  seed: 42
+  deterministic: true
+  
+# Default output directories
+output:
+  checkpoint_dir: "checkpoints"
+  results_dir: "results" 
+  logs_dir: "logs"
+
+# Default logging settings
+logging:
+  use_wandb: true
+  log_level: "INFO"
