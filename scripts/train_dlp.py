@@ -128,14 +128,14 @@ def create_dlp_dataloaders(config: DLPTrainConfig, tokenizer) -> tuple:
     train_path = os.path.join(config.data_path, "train.jsonl")
     val_path = os.path.join(config.data_path, "val.jsonl")
     
-    train_loader, val_loader = create_dataloaders(
-        train_path=train_path,
-        val_path=val_path,
-        tokenizer=tokenizer,
-        config=dataset_config,
-        batch_size=config.global_batch_size // dist.get_world_size() if dist.is_initialized() else config.global_batch_size,
-        num_workers=config.num_workers
-    )
+    # Create datasets
+    train_dataset = DLPDataset(train_path, tokenizer, dataset_config)
+    val_dataset = DLPDataset(val_path, tokenizer, dataset_config)
+    
+    # Create dataloaders  
+    batch_size = config.global_batch_size // dist.get_world_size() if dist.is_initialized() else config.global_batch_size
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=config.num_workers)
+    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=config.num_workers)
     
     return train_loader, val_loader
 
