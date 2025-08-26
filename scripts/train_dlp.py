@@ -34,7 +34,7 @@ sys.path.insert(0, str(project_root))
 
 from src.dlp.model import HRMDLPModel, DLPModelConfig
 from src.dlp.dataset import DLPDataset, DLPDatasetConfig
-from src.dlp.losses import DLPLoss, DLPLossConfig
+from src.dlp.losses import DLPMultiTaskLoss, DLPLossConfig
 from src.dlp.tokenizer import SimpleTokenizer, DLPTokenizer
 
 
@@ -151,7 +151,8 @@ def create_model_and_loss(config: DLPTrainConfig, vocab_size: int) -> tuple:
     }
     
     # Create model
-    model = create_dlp_model(model_config_dict)
+    model_config = DLPModelConfig(**model_config_dict)
+    model = HRMDLPModel(model_config)
     
     # Create loss function
     loss_config = DLPLossConfig(
@@ -178,7 +179,7 @@ def create_optimizer(model: nn.Module, config: DLPTrainConfig) -> torch.optim.Op
         }
     ]
     
-    optimizer = AdamATan2(
+    optimizer = AdamAtan2(
         param_groups,
         betas=(config.beta1, config.beta2),
         eps=1e-8
