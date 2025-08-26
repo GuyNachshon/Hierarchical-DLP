@@ -476,11 +476,20 @@ def train(config: DLPTrainConfig):
     
     # Setup experiment tracking
     if rank == 0:
-        run_name = config.run_name or coolname.generate_slug(2)
+        if config.run_name:
+            run_name = config.run_name
+        else:
+            # Generate meaningful run name with timestamp and key params
+            from datetime import datetime
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            vocab_size = getattr(tokenizer, 'vocab_size', 16000)
+            run_name = f"hrm-dlp_{timestamp}_bs{config.global_batch_size}_lr{config.lr:.0e}_vocab{vocab_size}"
+        
         wandb.init(
             project=config.project_name,
             name=run_name,
-            config=config.model_dump()
+            config=config.model_dump(),
+            tags=["hierarchical-reasoning", "data-loss-prevention", "multi-task", "bpe-tokenizer"]
         )
         
         # Create checkpoint directory
