@@ -21,6 +21,7 @@ dependencies = [
     "coolname>=2.2.0",
     "python-dotenv>=1.1.1",
     "pyyaml>=6.0",
+    "sentencepiece>=0.1.99",
     
     # ML/AI APIs
     "anthropic>=0.64.0",

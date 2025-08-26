@@ -28,13 +28,14 @@ from adam_atan2_pytorch import AdamAtan2
 
 import sys
 from pathlib import Path
-# Add HRM directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent / "HRM"))
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
 
-from hrm_dlp.model import HRMDLPModel, DLPModelConfig, create_dlp_model
-from hrm_dlp.dataset import DLPDataset, DLPDatasetConfig, create_dataloaders, SimpleTokenizer
-from hrm_dlp.losses import DLPMultiTaskLoss, DLPLossConfig, create_dlp_loss
-from hrm_dlp.tokenizer import DLPTokenizer, TokenizerConfig
+from src.dlp.model import DLPModel, DLPModelConfig
+from src.dlp.dataset import DLPDataset, DLPDatasetConfig
+from src.dlp.losses import DLPLoss, DLPLossConfig
+from src.dlp.tokenizer import SimpleTokenizer, DLPTokenizer
 
 
 class DLPArchConfig(pydantic.BaseModel):
