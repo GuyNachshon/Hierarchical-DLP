@@ -24,7 +24,7 @@ import coolname
 import hydra
 import pydantic
 from omegaconf import DictConfig, OmegaConf
-from adam_atan2 import AdamATan2
+from adam_atan2_pytorch import AdamAtan2
 
 import sys
 from pathlib import Path
