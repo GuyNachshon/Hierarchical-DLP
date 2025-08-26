@@ -183,13 +183,37 @@ def prepare_training_data(jsonl_files: List[str], output_file: str, serializer=N
                 
             print(f"Processing {jsonl_file}")
             with open(jsonl_file, 'r', encoding='utf-8') as f:
-                for line in f:
+                for line_num, line in enumerate(f, 1):
                     try:
-                        data = json.loads(line.strip())
+                        line = line.strip()
+                        if not line:  # Skip empty lines
+                            continue
+                        data = json.loads(line)
+                        
+                        # Ensure data is a dictionary
+                        if not isinstance(data, dict):
+                            print(f"Warning: Line {line_num} is not a dict, skipping")
+                            continue
+                            
+                        # Fix attachments format if needed (like in dataset.py)
+                        if "attachments" in data and isinstance(data["attachments"], str):
+                            data["attachments"] = []  # Convert single string to empty list for now
+                        elif "attachments" in data and isinstance(data["attachments"], list):
+                            fixed_attachments = []
+                            for att in data["attachments"]:
+                                if isinstance(att, str):
+                                    fixed_attachments.append({"name": att, "size": 0, "mime": "text/plain"})
+                                else:
+                                    fixed_attachments.append(att)
+                            data["attachments"] = fixed_attachments
+                        
                         result = serializer.serialize(data)
                         out_f.write(result.dsl_text + "\n")
+                    except json.JSONDecodeError as e:
+                        print(f"Warning: Line {line_num} JSON decode error: {e}")
+                        continue
                     except Exception as e:
-                        print(f"Warning: Failed to process line: {e}")
+                        print(f"Warning: Line {line_num} processing error: {e}")
                         continue
     
     print(f"Training data saved to {output_file}")
