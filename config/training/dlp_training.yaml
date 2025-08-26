@@ -2,13 +2,13 @@
 
 # Data configuration
 data:
-  # Use existing processed data
+  # Use properly labeled agentic data with proper splits
   train_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/train_examples_augmented.jsonl"
-  val_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/val_examples_augmented.jsonl"  
+  val_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/val_examples_augmented.jsonl"
   test_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/test_examples_augmented.jsonl"
   
-  # Fallback paths if augmented data is empty
-  fallback_train_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/val_examples.jsonl"
+  # Fallback paths if main data is empty (old unlabeled data)
+  fallback_train_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/train_examples.jsonl"
   fallback_val_path: "data/runs/run_20250824_123640_a2f52bf9/split_outputs/test_examples.jsonl"
   
   # Data processing

@@ -1,0 +1,21 @@
+{
+  "session_id": "run_20250823_211801_450515ee",
+  "start_time": 1755973081.150827,
+  "config": {
+    "train_size": 2000,
+    "val_size": 400,
+    "test_size": 400,
+    "output_dir": "data/dlp_agentic",
+    "enable_batch_api": true,
+    "max_concurrent_agents": 10
+  },
+  "output_dir": "data/dlp_agentic",
+  "splits": [
+    "train",
+    "val",
+    "test"
+  ],
+  "status": "completed",
+  "end_time": 1755973260.70896,
+  "error_message": null
+}

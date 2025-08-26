@@ -1,0 +1,16 @@
+{
+  "split_name": "test",
+  "total_examples": 400,
+  "provider": "openai",
+  "model": "gpt-5-2025-08-07",
+  "batch_count": 1,
+  "agent_distribution": {
+    "clean_business": 195,
+    "hr": 11,
+    "casual": 98,
+    "obfuscation": 5,
+    "legal": 38,
+    "finance": 44,
+    "security": 9
+  }
+}
