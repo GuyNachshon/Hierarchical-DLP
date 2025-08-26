@@ -10,7 +10,14 @@ except ImportError:
     # Fallback to FlashAttention 2
     from flash_attn import flash_attn_func  # type: ignore[import]
 
-# Import removed - trunc_normal_init_ is now defined in model.py
+# Define trunc_normal_init_ function
+def trunc_normal_init_(tensor: torch.Tensor, std: float = 1.0) -> torch.Tensor:
+    """Initialize tensor with truncated normal distribution"""
+    with torch.no_grad():
+        tensor.normal_(0, std)
+        # Truncate to [-2*std, 2*std]
+        tensor.clamp_(-2 * std, 2 * std)
+    return tensor
 
 
 CosSin = Tuple[torch.Tensor, torch.Tensor]
