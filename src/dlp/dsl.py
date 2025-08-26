@@ -133,9 +133,34 @@ class DSLSerializer:
         current_offset += len(attachments_part)
         
         # Links
-        links = example.get("links", [])
-        if links:
-            links_content = ",".join(links)
+        links_raw = example.get("links", [])
+        if links_raw:
+            link_strs = []
+            
+            # Handle case where links is a dict instead of list
+            if isinstance(links_raw, dict):
+                for key, value in links_raw.items():
+                    if isinstance(value, str):
+                        link_strs.append(f"{value}|{key}")
+                    else:
+                        link_strs.append(str(value))
+            elif isinstance(links_raw, list):
+                # Handle list of links (string or dict format)
+                for link in links_raw:
+                    if isinstance(link, str):
+                        link_strs.append(link)
+                    elif isinstance(link, dict):
+                        url = link.get("url", "")
+                        label = link.get("label", "")
+                        if label:
+                            link_strs.append(f"{url}|{label}")
+                        else:
+                            link_strs.append(url)
+            else:
+                # Fallback for other types
+                link_strs.append(str(links_raw))
+            
+            links_content = ",".join(link_strs)
             links_part = f"{self.LINKS_TOKEN}{links_content}{self.LINKS_END_TOKEN}\n"
         else:
             links_part = f"{self.LINKS_TOKEN}{self.LINKS_END_TOKEN}\n"

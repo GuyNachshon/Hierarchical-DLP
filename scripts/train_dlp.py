@@ -207,7 +207,7 @@ def create_optimizer(model: nn.Module, config: DLPTrainConfig) -> torch.optim.Op
     ]
     
     optimizer = AdamAtan2(
-        model.parameters(),
+        param_groups,
         lr=config.lr,  # Will be updated by scheduler
         weight_decay=config.weight_decay,
         betas=(config.beta1, config.beta2)
