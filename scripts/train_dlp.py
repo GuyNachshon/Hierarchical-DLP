@@ -338,11 +338,26 @@ def evaluate(
     
     with torch.no_grad():
         for batch in tqdm.tqdm(val_loader, desc="Evaluating"):
-            # Move batch to device
-            batch.input_ids = batch.input_ids.to(device)
-            batch.attention_mask = batch.attention_mask.to(device)
-            batch.doc_labels = batch.doc_labels.to(device)
-            batch.bio_labels = batch.bio_labels.to(device)
+            # Handle both dict and object batch formats
+            if isinstance(batch, dict):
+                input_ids = batch["input_ids"].to(device)
+                attention_mask = batch["attention_mask"].to(device)
+                doc_labels = batch["doc_labels"].to(device)
+                bio_labels = batch["bio_labels"].to(device)
+                # Create a simple object for compatibility
+                from types import SimpleNamespace
+                batch = SimpleNamespace(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    doc_labels=doc_labels,
+                    bio_labels=bio_labels
+                )
+            else:
+                # Move batch to device
+                batch.input_ids = batch.input_ids.to(device)
+                batch.attention_mask = batch.attention_mask.to(device)
+                batch.doc_labels = batch.doc_labels.to(device)
+                batch.bio_labels = batch.bio_labels.to(device)
             
             # Forward pass
             with torch.cuda.amp.autocast(dtype=torch.bfloat16):
