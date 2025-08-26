@@ -35,7 +35,7 @@ sys.path.insert(0, str(project_root))
 from src.dlp.model import HRMDLPModel, DLPModelConfig
 from src.dlp.dataset import DLPDataset, DLPDatasetConfig
 from src.dlp.losses import DLPMultiTaskLoss, DLPLossConfig
-from src.dlp.tokenizer import DLPTokenizer
+from src.dlp.tokenizer import DLPTokenizer, create_tokenizer, TokenizerConfig
 
 
 class SimpleTokenizer:
@@ -501,11 +501,26 @@ def train(config: DLPTrainConfig):
         progress_bar = tqdm.tqdm(train_loader, desc=f"Epoch {epoch+1}/{config.epochs}")
         
         for batch in progress_bar:
-            # Move batch to device
-            batch.input_ids = batch.input_ids.to(device)
-            batch.attention_mask = batch.attention_mask.to(device)
-            batch.doc_labels = batch.doc_labels.to(device)
-            batch.bio_labels = batch.bio_labels.to(device)
+            # Handle both dict and object batch formats
+            if isinstance(batch, dict):
+                input_ids = batch["input_ids"].to(device)
+                attention_mask = batch["attention_mask"].to(device)
+                doc_labels = batch["doc_labels"].to(device)
+                bio_labels = batch["bio_labels"].to(device)
+                # Create a simple object for compatibility
+                from types import SimpleNamespace
+                batch = SimpleNamespace(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    doc_labels=doc_labels,
+                    bio_labels=bio_labels
+                )
+            else:
+                # Move batch to device
+                batch.input_ids = batch.input_ids.to(device)
+                batch.attention_mask = batch.attention_mask.to(device)
+                batch.doc_labels = batch.doc_labels.to(device)
+                batch.bio_labels = batch.bio_labels.to(device)
             
             # Training step
             step_losses = train_step(
@@ -647,6 +662,36 @@ def main(cfg: DictConfig):
     }
     
     config = DLPTrainConfig(**config_dict)
+    
+    # Train tokenizer if it doesn't exist
+    if not config.tokenizer_path or not os.path.exists(config.tokenizer_path):
+        print("🔄 No tokenizer found, training SentencePiece tokenizer...")
+        
+        # Create tokenizer directory
+        tokenizer_dir = "tokenizers"
+        os.makedirs(tokenizer_dir, exist_ok=True)
+        model_prefix = f"{tokenizer_dir}/dlp_tokenizer"
+        
+        # Train tokenizer on both train and validation data
+        tokenizer_config = TokenizerConfig(
+            vocab_size=16000,
+            model_type="bpe",
+            character_coverage=0.9995
+        )
+        
+        print(f"Training tokenizer with vocab_size={tokenizer_config.vocab_size}")
+        tokenizer = create_tokenizer(
+            jsonl_files=[train_path, val_path],
+            model_prefix=model_prefix,
+            config=tokenizer_config
+        )
+        
+        # Update config to use the new tokenizer
+        config.tokenizer_path = f"{model_prefix}.model"
+        print(f"✅ Tokenizer trained and saved to: {config.tokenizer_path}")
+    else:
+        print(f"✅ Using existing tokenizer: {config.tokenizer_path}")
+    
     train(config)
 
 
