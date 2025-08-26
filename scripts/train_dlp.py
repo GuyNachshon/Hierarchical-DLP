@@ -565,10 +565,57 @@ def train(config: DLPTrainConfig):
     print("Training completed!")
 
 
-@hydra.main(version_base=None, config_path="config", config_name="dlp_train")
+@hydra.main(version_base=None, config_path="../config/training", config_name="dlp_training")
 def main(cfg: DictConfig):
     """Main entry point"""
-    config = DLPTrainConfig(**OmegaConf.to_container(cfg, resolve=True))
+    # Convert the structured config to our DLPTrainConfig format
+    cfg_dict = OmegaConf.to_container(cfg, resolve=True)
+    
+    # Map the nested structure to flat structure
+    config_dict = {
+        # Data config
+        'data_path': cfg_dict['data']['train_path'].rsplit('/', 1)[0].rsplit('/', 1)[0],  # Extract base path
+        'tokenizer_path': cfg_dict['data'].get('tokenizer_path'),
+        'max_length': cfg_dict['data']['max_length'],
+        
+        # Training config
+        'epochs': cfg_dict['training']['epochs'],
+        'lr': cfg_dict['training']['learning_rate'],
+        'lr_min_ratio': cfg_dict['training']['lr_min_ratio'],
+        'lr_warmup_steps': cfg_dict['training']['lr_warmup_steps'],
+        'weight_decay': cfg_dict['training']['weight_decay'],
+        'beta1': 0.9,  # Default
+        'beta2': 0.95, # Default
+        
+        # Batch size calculation
+        'global_batch_size': cfg_dict['training']['per_device_batch_size'] * cfg_dict['training']['gradient_accumulation_steps'],
+        
+        # Evaluation
+        'eval_interval': cfg_dict['training']['eval_every_n_steps'],
+        'checkpoint_every_eval': True,
+        'eval_save_outputs': [],
+        
+        # Experiment tracking  
+        'project_name': cfg_dict['experiment']['project_name'],
+        'run_name': cfg_dict['experiment'].get('run_name'),
+        'checkpoint_path': cfg_dict['output']['checkpoint_dir'],
+        
+        # System
+        'seed': 42,  # Default
+        'num_workers': 4,  # Default
+        
+        # Architecture (use defaults from DLPArchConfig)
+        'arch': DLPArchConfig(),
+        
+        # Loss weights (use defaults)
+        'doc_loss_weight': 1.0,
+        'span_loss_weight': 1.0, 
+        'mask_denoise_weight': 0.3,
+        'section_shuffle_weight': 0.2,
+        'label_smoothing': 0.05,
+    }
+    
+    config = DLPTrainConfig(**config_dict)
     train(config)
 
 
