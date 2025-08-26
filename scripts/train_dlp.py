@@ -460,8 +460,8 @@ def train(config: DLPTrainConfig):
     total_steps = len(train_loader) * config.epochs
     scheduler = create_scheduler(optimizer, config, total_steps)
     
-    # Mixed precision scaler
-    scaler = torch.cuda.amp.GradScaler()
+    # Mixed precision scaler - disable for bfloat16 due to PyTorch compatibility
+    scaler = torch.cuda.amp.GradScaler(enabled=False)
     
     # Initialize training state
     train_state = DLPTrainState(
