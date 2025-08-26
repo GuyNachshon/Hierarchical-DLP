@@ -14,15 +14,19 @@ import pydantic
 from .dsl import DSLSerializer, create_bio_tags, BIO_TAG_TO_ID, NUM_BIO_TAGS
 
 
+from typing import Union
+
 class DLPExample(pydantic.BaseModel):
     """Schema for DLP training examples"""
+    model_config = pydantic.ConfigDict(extra='allow')
+    
     channel: str = "email"
     user: Dict[str, Any] = pydantic.Field(default_factory=dict)
     recipients: List[str] = pydantic.Field(default_factory=list)
     thread: Dict[str, Any] = pydantic.Field(default_factory=dict)
     subject: str = ""
     body: str = ""
-    attachments: List[Dict[str, Any]] = pydantic.Field(default_factory=list)
+    attachments: List[Union[str, Dict[str, Any]]] = pydantic.Field(default_factory=list)
     links: List[str] = pydantic.Field(default_factory=list)
     labels: Dict[str, int] = pydantic.Field(default_factory=dict)
     spans: List[Dict[str, Any]] = pydantic.Field(default_factory=list)
@@ -84,6 +88,22 @@ class DLPDataset(Dataset):
             for line_num, line in enumerate(f, 1):
                 try:
                     data = json.loads(line.strip())
+                    
+                    # Fix attachments format if they're strings instead of dicts
+                    if "attachments" in data and isinstance(data["attachments"], list):
+                        fixed_attachments = []
+                        for att in data["attachments"]:
+                            if isinstance(att, str):
+                                # Convert string filename to dict format
+                                fixed_attachments.append({
+                                    "name": att,
+                                    "size": 0,  # Unknown size
+                                    "mime": self._guess_mime_type(att)
+                                })
+                            else:
+                                fixed_attachments.append(att)
+                        data["attachments"] = fixed_attachments
+                    
                     example = DLPExample(**data)
                     examples.append(example)
                 except Exception as e:
@@ -91,6 +111,28 @@ class DLPDataset(Dataset):
                     continue
         
         return examples
+    
+    def _guess_mime_type(self, filename: str) -> str:
+        """Guess MIME type from filename extension"""
+        ext = filename.lower().split('.')[-1] if '.' in filename else ''
+        mime_map = {
+            'pdf': 'application/pdf',
+            'doc': 'application/msword',
+            'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'xls': 'application/vnd.ms-excel',
+            'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'ppt': 'application/vnd.ms-powerpoint',
+            'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+            'txt': 'text/plain',
+            'csv': 'text/csv',
+            'jpg': 'image/jpeg',
+            'jpeg': 'image/jpeg',
+            'png': 'image/png',
+            'gif': 'image/gif',
+            'ics': 'text/calendar',
+            'zip': 'application/zip'
+        }
+        return mime_map.get(ext, 'application/octet-stream')
     
     def __len__(self) -> int:
         return len(self.examples)
