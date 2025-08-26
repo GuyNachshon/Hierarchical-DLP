@@ -43,6 +43,67 @@ class TokenizerConfig:
             ]
 
 
+class SimpleTokenizer:
+    """Simple fallback tokenizer when SentencePiece is not available"""
+    
+    def __init__(self, vocab_size: int = 16000):
+        self.vocab_size = vocab_size
+        # Create a simple character-level vocabulary
+        self.char_to_id = {}
+        self.id_to_char = {}
+        
+        # Add special tokens
+        special_tokens = ["<pad>", "<unk>", "<s>", "</s>"]
+        for i, token in enumerate(special_tokens):
+            self.char_to_id[token] = i
+            self.id_to_char[i] = token
+        
+        # Add basic ASCII characters
+        current_id = len(special_tokens)
+        for i in range(32, 127):  # Printable ASCII
+            char = chr(i)
+            if char not in self.char_to_id and current_id < vocab_size:
+                self.char_to_id[char] = current_id
+                self.id_to_char[current_id] = char
+                current_id += 1
+        
+        self.pad_token_id = 0
+        self.unk_token_id = 1
+        self.bos_token_id = 2
+        self.eos_token_id = 3
+    
+    def encode(self, text: str, max_length: int = None) -> List[int]:
+        """Encode text to token IDs"""
+        if not isinstance(text, str):
+            text = str(text)
+        
+        # Simple character-level encoding
+        ids = [self.bos_token_id]  # Start token
+        for char in text:
+            ids.append(self.char_to_id.get(char, self.unk_token_id))
+        ids.append(self.eos_token_id)  # End token
+        
+        # Truncate or pad
+        if max_length:
+            if len(ids) > max_length:
+                ids = ids[:max_length-1] + [self.eos_token_id]
+            else:
+                ids.extend([self.pad_token_id] * (max_length - len(ids)))
+        
+        return ids
+    
+    def decode(self, ids: List[int]) -> str:
+        """Decode token IDs to text"""
+        chars = []
+        for id_val in ids:
+            if id_val == self.pad_token_id:
+                break
+            if id_val in [self.bos_token_id, self.eos_token_id]:
+                continue
+            chars.append(self.id_to_char.get(id_val, "<unk>"))
+        return "".join(chars)
+
+
 class DLPTokenizer:
     """SentencePiece tokenizer for DLP DSL text"""
     

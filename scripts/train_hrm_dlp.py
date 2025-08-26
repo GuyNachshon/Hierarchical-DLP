@@ -223,8 +223,9 @@ def train_step(
     Perform a single training step with HRM 1-step gradient methodology.
     """
     
-    # Move batch to GPU
-    batch = {k: v.cuda() if isinstance(v, torch.Tensor) else v for k, v in batch.items()}
+    # Move batch to device
+    device = next(model.parameters()).device
+    batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}
     
     # Initialize carry if needed
     if carry is None:
@@ -354,7 +355,11 @@ def train_hrm_dlp(config: HRMDLPTrainingConfig):
     # Create model
     print("Creating HRM-DLP model...")
     model = create_model(config, vocab_size)
-    model.cuda()
+    
+    # Move to GPU if available
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Using device: {device}")
+    model.to(device)
     
     print(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
     
