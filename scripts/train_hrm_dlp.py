@@ -174,11 +174,12 @@ def create_optimizer(model: torch.nn.Module, config: HRMDLPTrainingConfig) -> to
     """Create AdamATan2 optimizer following HRM methodology."""
 
     # Use AdamATan2 as in original HRM (without eps parameter)
+    # Ensure all parameters are proper numeric types
     optimizer = AdamAtan2(
         model.parameters(),
-        lr=config.learning_rate,
-        weight_decay=config.weight_decay,
-        betas=(config.beta1, config.beta2)
+        lr=float(config.learning_rate),
+        weight_decay=float(config.weight_decay),
+        betas=(float(config.beta1), float(config.beta2))
     )
 
     return optimizer
