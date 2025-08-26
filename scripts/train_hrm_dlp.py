@@ -25,21 +25,23 @@ from torch.utils.data import DataLoader
 import wandb
 from omegaconf import DictConfig, OmegaConf
 
-try:
-    from adam_atan2 import AdamATan2
-    HAS_ADAM_ATAN2 = True
-except ImportError:
-    HAS_ADAM_ATAN2 = False
-    print("Warning: adam_atan2 not found, falling back to AdamW")
+from adam_atan2_pytorch import AdamAtan2
+
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from src.dlp.dataset import DLPDataset, DLPDatasetConfig
-from src.dlp.tokenizer import DLPTokenizer, SimpleTokenizer
-from src.dlp.hrm_model import create_hrm_dlp_model, HRMDLPConfig
-from src.dlp.hrm_losses import HRMDLPLossWrapper
+# Import only DLP-specific modules (avoid HRM imports that need flash attention)
+try:
+    from src.dlp.dataset import DLPDataset, DLPDatasetConfig
+    from src.dlp.tokenizer import DLPTokenizer, SimpleTokenizer
+    from src.dlp.hrm_model import create_hrm_dlp_model, HRMDLPConfig
+    from src.dlp.hrm_losses import HRMDLPLossWrapper
+except ImportError as e:
+    print(f"Import error: {e}")
+    print("Make sure you're running from the project root directory")
+    sys.exit(1)
 
 
 @dataclass
@@ -171,13 +173,22 @@ def create_model(config: HRMDLPTrainingConfig, vocab_size: int) -> HRMDLPLossWra
 def create_optimizer(model: torch.nn.Module, config: HRMDLPTrainingConfig) -> torch.optim.Optimizer:
     """Create AdamATan2 optimizer following HRM methodology."""
     
-    # Use AdamATan2 as in original HRM
-    optimizer = AdamATan2(
-        model.parameters(),
-        lr=config.learning_rate,
-        weight_decay=config.weight_decay,
-        betas=(config.beta1, config.beta2)
-    )
+    if HAS_ADAM_ATAN2:
+        # Use AdamATan2 as in original HRM (without eps parameter)
+        optimizer = AdamATan2(
+            model.parameters(),
+            lr=config.learning_rate,
+            weight_decay=config.weight_decay,
+            betas=(config.beta1, config.beta2)
+        )
+    else:
+        # Fallback to AdamW
+        optimizer = torch.optim.AdamW(
+            model.parameters(),
+            lr=config.learning_rate,
+            weight_decay=config.weight_decay,
+            betas=(config.beta1, config.beta2)
+        )
     
     return optimizer
 

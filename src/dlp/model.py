@@ -15,7 +15,7 @@ import torch.nn.functional as F
 from torch import nn
 from pydantic import BaseModel
 
-from ..hrm.layers import rms_norm, SwiGLU, Attention, RotaryEmbedding, CosSin, CastedEmbedding, CastedLinear, trunc_normal_init_
+from .hrm_layers import rms_norm, SwiGLU, Attention, RotaryEmbedding, CosSin, CastedEmbedding, CastedLinear, trunc_normal_init_
 
 
 class DLPModelConfig(BaseModel):

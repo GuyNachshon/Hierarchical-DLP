@@ -5,10 +5,14 @@ A clean, simplified implementation of the HRM architecture with DLP extensions
 for email/chat content analysis, PII detection, and trust scoring.
 """
 
-from . import hrm
+# Only import dlp for now to avoid flash attention dependencies
 from . import dlp
-from . import data
-from . import utils
+
+try:
+    from . import data
+    from . import utils
+except ImportError:
+    pass
 
 __version__ = "1.0.0"
-__all__ = ["hrm", "dlp", "data", "utils"]
+__all__ = ["dlp"]
