@@ -32,7 +32,7 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from src.dlp.model import DLPModel, DLPModelConfig
+from src.dlp.model import HRMDLPModel, DLPModelConfig
 from src.dlp.dataset import DLPDataset, DLPDatasetConfig
 from src.dlp.losses import DLPLoss, DLPLossConfig
 from src.dlp.tokenizer import SimpleTokenizer, DLPTokenizer
