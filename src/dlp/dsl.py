@@ -123,7 +123,12 @@ class DSLSerializer:
                 name = att.get("name", "")
                 size = att.get("size", 0)
                 mime = att.get("mime", "")
-                size_kb = size // 1024 if size > 0 else 0
+                # Handle both string and int sizes
+                try:
+                    size_int = int(size) if size else 0
+                    size_kb = size_int // 1024 if size_int > 0 else 0
+                except (ValueError, TypeError):
+                    size_kb = 0
                 attachment_strs.append(f"{name}|{size_kb}KB;{mime}")
             attachments_content = ",".join(attachment_strs)
             attachments_part = f"{self.ATTACHMENTS_TOKEN}{attachments_content}{self.ATTACHMENTS_END_TOKEN}\n"
