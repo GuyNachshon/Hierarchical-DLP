@@ -89,6 +89,8 @@ class DLPTrainConfig(pydantic.BaseModel):
     """Training configuration for DLP model"""
     # Data
     data_path: str
+    train_path: str
+    val_path: str
     tokenizer_path: Optional[str] = None
     max_length: int = 1024
     
@@ -140,19 +142,22 @@ class DLPTrainState:
     best_val_loss: float
     
     
-def create_dlp_dataloaders(config: DLPTrainConfig, tokenizer) -> tuple:
+def create_dlp_dataloaders(config: DLPTrainConfig, tokenizer, train_path: str, val_path: str) -> tuple:
     """Create training and validation dataloaders"""
     dataset_config = DLPDatasetConfig(
         max_length=config.max_length,
         doc_labels=["sensitivity", "exposure", "context", "obfuscation"]
     )
     
-    train_path = os.path.join(config.data_path, "train.jsonl")
-    val_path = os.path.join(config.data_path, "val.jsonl")
-    
-    # Create datasets
+    # Create datasets with provided paths
     train_dataset = DLPDataset(train_path, tokenizer, dataset_config)
     val_dataset = DLPDataset(val_path, tokenizer, dataset_config)
+    
+    # Check if datasets are empty and handle gracefully
+    if len(train_dataset) == 0:
+        raise ValueError(f"Training dataset is empty. Check that {train_path} exists and contains valid data.")
+    if len(val_dataset) == 0:
+        raise ValueError(f"Validation dataset is empty. Check that {val_path} exists and contains valid data.")
     
     # Create dataloaders  
     batch_size = config.global_batch_size // dist.get_world_size() if dist.is_initialized() else config.global_batch_size
@@ -434,8 +439,8 @@ def train(config: DLPTrainConfig):
         print("Warning: Using simple tokenizer. Train a proper tokenizer for better results.")
         tokenizer = SimpleTokenizer(vocab_size=16000)
     
-    # Create dataloaders
-    train_loader, val_loader = create_dlp_dataloaders(config, tokenizer)
+    # Create dataloaders - this will be set by main function
+    train_loader, val_loader = create_dlp_dataloaders(config, tokenizer, config.train_path, config.val_path)
     vocab_size = tokenizer.vocab_size if hasattr(tokenizer, 'vocab_size') else 16000
     
     # Create model and loss
@@ -571,10 +576,35 @@ def main(cfg: DictConfig):
     # Convert the structured config to our DLPTrainConfig format
     cfg_dict = OmegaConf.to_container(cfg, resolve=True)
     
+    # Determine which data paths to use (with fallback logic)
+    train_path = cfg_dict['data']['train_path']
+    val_path = cfg_dict['data']['val_path']
+    
+    # Check if files exist, use fallbacks if needed
+    if not os.path.exists(train_path):
+        print(f"Primary train path {train_path} not found, trying fallback...")
+        fallback_train = cfg_dict['data'].get('fallback_train_path')
+        if fallback_train and os.path.exists(fallback_train):
+            train_path = fallback_train
+            print(f"Using fallback train path: {train_path}")
+        else:
+            print(f"Warning: No valid training data found!")
+    
+    if not os.path.exists(val_path):
+        print(f"Primary val path {val_path} not found, trying fallback...")
+        fallback_val = cfg_dict['data'].get('fallback_val_path') 
+        if fallback_val and os.path.exists(fallback_val):
+            val_path = fallback_val
+            print(f"Using fallback val path: {val_path}")
+        else:
+            print(f"Warning: No valid validation data found!")
+    
     # Map the nested structure to flat structure
     config_dict = {
         # Data config
-        'data_path': cfg_dict['data']['train_path'].rsplit('/', 1)[0].rsplit('/', 1)[0],  # Extract base path
+        'data_path': os.path.dirname(train_path),  # Extract base path from train path
+        'train_path': train_path,
+        'val_path': val_path,
         'tokenizer_path': cfg_dict['data'].get('tokenizer_path'),
         'max_length': cfg_dict['data']['max_length'],
         
