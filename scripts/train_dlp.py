@@ -35,7 +35,29 @@ sys.path.insert(0, str(project_root))
 from src.dlp.model import HRMDLPModel, DLPModelConfig
 from src.dlp.dataset import DLPDataset, DLPDatasetConfig
 from src.dlp.losses import DLPMultiTaskLoss, DLPLossConfig
-from src.dlp.tokenizer import SimpleTokenizer, DLPTokenizer
+from src.dlp.tokenizer import DLPTokenizer
+
+
+class SimpleTokenizer:
+    """Simple character-level tokenizer fallback"""
+    def __init__(self, vocab_size=16000):
+        self.vocab_size = vocab_size
+        self.pad_token_id = 0
+        self.unk_token_id = 1
+        self.bos_token_id = 2
+        self.eos_token_id = 3
+    
+    def encode(self, text: str, add_bos=False, add_eos=False):
+        # Simple character encoding (ASCII)
+        tokens = [min(ord(c), self.vocab_size-1) for c in text]
+        if add_bos:
+            tokens = [self.bos_token_id] + tokens
+        if add_eos:
+            tokens = tokens + [self.eos_token_id]
+        return tokens
+    
+    def decode(self, token_ids):
+        return ''.join([chr(min(max(t, 32), 126)) for t in token_ids if t > 3])
 
 
 class DLPArchConfig(pydantic.BaseModel):
