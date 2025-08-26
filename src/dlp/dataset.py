@@ -27,7 +27,7 @@ class DLPExample(pydantic.BaseModel):
     subject: str = ""
     body: str = ""
     attachments: List[Union[str, Dict[str, Any]]] = pydantic.Field(default_factory=list)
-    links: List[str] = pydantic.Field(default_factory=list)
+    links: Union[List[Union[str, Dict[str, Any]]], Dict[str, Any], None] = pydantic.Field(default_factory=list)
     labels: Dict[str, int] = pydantic.Field(default_factory=dict)
     spans: List[Dict[str, Any]] = pydantic.Field(default_factory=list)
     meta: Dict[str, Any] = pydantic.Field(default_factory=dict)
