@@ -6,16 +6,16 @@
   "_comment_model": "Model architecture configuration",
   "vocab_size": 16000,
   "seq_len": 1024,
-  "hidden_size": 512,
+  "hidden_size": 384,
   
   "_comment_hrm": "HRM hierarchical reasoning configuration",
-  "H_layers": 4,
-  "L_layers": 4, 
+  "H_layers": 2,
+  "L_layers": 8, 
   "H_cycles": 2,
   "L_cycles": 2,
   
   "_comment_transformer": "Transformer layer configuration",
-  "num_heads": 8,
+  "num_heads": 6,
   "expansion": 4.0,
   "rms_norm_eps": 1e-5,
   "rope_theta": 10000.0,
@@ -58,8 +58,18 @@
   "wandb_run_name": "hrm_dlp_v1",
   "checkpoint_dir": "checkpoints/hrm_dlp",
   
-  "_comment_loss": "Loss function weights",
+  "_comment_loss": "Loss function weights (as per docs: BCE(doc) + CE(BIO) + 0.3*mask-denoise + 0.2*section-shuffle)",
   "doc_loss_weight": 1.0,
   "span_loss_weight": 1.0,
-  "act_loss_weight": 0.1
+  "act_loss_weight": 0.1,
+  "mask_denoise_weight": 0.3,
+  "section_shuffle_weight": 0.2,
+  
+  "_comment_aux_loss": "Auxiliary loss parameters",
+  "mask_denoise_prob": 0.15,
+  "section_shuffle_prob": 0.10,
+  
+  "_comment_production": "Production mode settings",
+  "fixed_segments": false,
+  "num_fixed_segments": 2
 }

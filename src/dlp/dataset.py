@@ -12,6 +12,7 @@ from torch.utils.data import Dataset
 import pydantic
 
 from .dsl import DSLSerializer, create_bio_tags, BIO_TAG_TO_ID, NUM_BIO_TAGS
+from .tokenizer import DLPTokenizer, SimpleTokenizer, TokenizerConfig
 
 
 from typing import Union

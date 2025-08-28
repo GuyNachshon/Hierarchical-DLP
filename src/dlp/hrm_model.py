@@ -56,6 +56,8 @@ class HRMDLPConfig:
     
     # Segment processing (like original HRM)
     segment_size: int = 64     # Update slow state every N tokens
+    fixed_segments: bool = False  # Use fixed 2-segment mode for production
+    num_fixed_segments: int = 2   # Number of segments in fixed mode
     
     # Training
     forward_dtype: str = "bfloat16"
@@ -121,13 +123,17 @@ class HRMDLPInner(nn.Module):
         # Fusion gates for combining input/fast/slow
         self.fusion_gates = FusionGates(config.hidden_size)
         
-        # Initial states for H and L levels
+        # Learned state initialization (as per docs: "learned slow seed")
+        # H-module (slow) gets learned seed, L-module (fast) can be simpler
         self.H_init = nn.Parameter(
-            trunc_normal_init_(torch.empty(config.hidden_size, dtype=self.forward_dtype), std=1)
+            trunc_normal_init_(torch.empty(config.hidden_size, dtype=self.forward_dtype), std=0.02)  # Smaller std for better initialization
         )
         self.L_init = nn.Parameter(
-            trunc_normal_init_(torch.empty(config.hidden_size, dtype=self.forward_dtype), std=1) 
+            torch.zeros(config.hidden_size, dtype=self.forward_dtype)  # Start fast module at zero
         )
+        
+        # Segment pooling projection (mean + max + CLS -> hidden_size)
+        self.segment_pool_proj = CastedLinear(3 * config.hidden_size, config.hidden_size, bias=False)
         
         # DLP task heads
         self.doc_head = CastedLinear(config.hidden_size, config.num_doc_scores, bias=True)
@@ -171,12 +177,20 @@ class HRMDLPInner(nn.Module):
         # Reshape and pool
         states_reshaped = states.view(batch_size, num_segments, segment_size, hidden_size)
         
-        # Use mean + max pooling for richer representation
+        # Mean pooling
         mean_pooled = states_reshaped.mean(dim=2)  # [batch, num_segments, hidden_size]
-        max_pooled = states_reshaped.max(dim=2)[0]
         
-        # Combine mean and max (simple concatenation then projection)
-        combined = mean_pooled + max_pooled  # Simple addition for now
+        # Max pooling  
+        max_pooled = states_reshaped.max(dim=2)[0]  # [batch, num_segments, hidden_size]
+        
+        # CLS pooling (first token of each segment)
+        cls_pooled = states_reshaped[:, :, 0, :]  # [batch, num_segments, hidden_size]
+        
+        # Combine using learned projection as per docs: mean + max + CLS
+        pooled_combined = torch.cat([mean_pooled, max_pooled, cls_pooled], dim=-1)  # [batch, num_segments, 3*hidden_size]
+        
+        # Project back to original size using pre-initialized projection
+        combined = self.segment_pool_proj(pooled_combined)  # [batch, num_segments, hidden_size]
         
         return combined
 
@@ -261,7 +275,15 @@ class HRMDLPInner(nn.Module):
                     slow_input = self._segment_pooling(z_H + input_embeddings)
                     pooled_H = self._segment_pooling(z_H)
                     
-                    updated_pooled_H = self.H_level(pooled_H, slow_input, **seq_info)
+                    # Create segment-level RoPE embeddings
+                    num_segments = pooled_H.shape[1]
+                    segment_cos, segment_sin = self.rotary_emb()
+                    # Slice to match segment count
+                    segment_cos = segment_cos[:num_segments]
+                    segment_sin = segment_sin[:num_segments]
+                    segment_seq_info = {'cos_sin': (segment_cos, segment_sin)}
+                    
+                    updated_pooled_H = self.H_level(pooled_H, slow_input, **segment_seq_info)
                     
                     # Expand back to token level
                     z_H = self._expand_segments_to_tokens(updated_pooled_H, seq_len)

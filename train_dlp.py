@@ -24,7 +24,8 @@ import logging
 sys.path.append(str(Path(__file__).parent / "src"))
 
 from src.dlp.hrm_model import HRMDLP, HRMDLPConfig, HRMDLPOutput
-from src.dlp.dataset import DLPDataset, DLPDatasetConfig, create_dataloaders, SimpleTokenizer
+from src.dlp.dataset import DLPDataset, DLPDatasetConfig, create_dataloaders
+from src.dlp.tokenizer import DLPTokenizer, SimpleTokenizer, TokenizerConfig, create_tokenizer
 from src.dlp.act import ACTLoss
 from src.dlp.dsl import NUM_BIO_TAGS
 
@@ -45,16 +46,16 @@ class DLPTrainingConfig:
         # Model config
         self.vocab_size: int = kwargs.get('vocab_size', 16000)
         self.seq_len: int = kwargs.get('seq_len', 1024)
-        self.hidden_size: int = kwargs.get('hidden_size', 512)
+        self.hidden_size: int = kwargs.get('hidden_size', 384)
         
-        # HRM architecture
-        self.H_layers: int = kwargs.get('H_layers', 4)
-        self.L_layers: int = kwargs.get('L_layers', 4)
+        # HRM architecture (docs specify 8 fast + 2 slow layers)
+        self.H_layers: int = kwargs.get('H_layers', 2)
+        self.L_layers: int = kwargs.get('L_layers', 8)
         self.H_cycles: int = kwargs.get('H_cycles', 2)
         self.L_cycles: int = kwargs.get('L_cycles', 2)
         
         # Transformer config
-        self.num_heads: int = kwargs.get('num_heads', 8)
+        self.num_heads: int = kwargs.get('num_heads', 6)
         self.expansion: float = kwargs.get('expansion', 4.0)
         self.rms_norm_eps: float = kwargs.get('rms_norm_eps', 1e-5)
         self.rope_theta: float = kwargs.get('rope_theta', 10000.0)
@@ -98,10 +99,16 @@ class DLPTrainingConfig:
         self.wandb_run_name: Optional[str] = kwargs.get('wandb_run_name', None)
         self.checkpoint_dir: str = kwargs.get('checkpoint_dir', 'checkpoints/hrm_dlp')
         
-        # Loss weights
+        # Loss weights (as per docs: BCE(doc) + CE(BIO) + 0.3*mask-denoise + 0.2*section-shuffle)
         self.doc_loss_weight: float = kwargs.get('doc_loss_weight', 1.0)
         self.span_loss_weight: float = kwargs.get('span_loss_weight', 1.0)
         self.act_loss_weight: float = kwargs.get('act_loss_weight', 0.1)
+        self.mask_denoise_weight: float = kwargs.get('mask_denoise_weight', 0.3)
+        self.section_shuffle_weight: float = kwargs.get('section_shuffle_weight', 0.2)
+        
+        # Auxiliary loss parameters
+        self.mask_denoise_prob: float = kwargs.get('mask_denoise_prob', 0.15)  # 15% as per docs
+        self.section_shuffle_prob: float = kwargs.get('section_shuffle_prob', 0.10)  # 10% as per docs
 
 
 class DLPLossComputer:
@@ -111,6 +118,10 @@ class DLPLossComputer:
         self.config = config
         self.doc_criterion = nn.BCEWithLogitsLoss()  # Multi-label document classification
         self.span_criterion = nn.CrossEntropyLoss(ignore_index=config.ignore_label_id)
+        
+        # Auxiliary loss criteria
+        self.mask_denoise_criterion = nn.CrossEntropyLoss(ignore_index=config.ignore_label_id)
+        self.section_shuffle_criterion = nn.BCEWithLogitsLoss()
         
         if config.use_act:
             self.act_loss = ACTLoss(
@@ -142,10 +153,27 @@ class DLPLossComputer:
             )
             losses['act_loss'] = act_loss_value
         
-        # Total loss
+        # Auxiliary losses (as per docs: 0.3*mask-denoise + 0.2*section-shuffle)
+        if 'masked_input_ids' in batch and 'mask_targets' in batch:
+            # Mask-denoise loss: predict masked tokens
+            mask_denoise_loss = self._compute_mask_denoise_loss(output, batch)
+            losses['mask_denoise_loss'] = mask_denoise_loss
+        else:
+            mask_denoise_loss = torch.tensor(0.0, device=doc_loss.device)
+            
+        if 'section_shuffle_labels' in batch:
+            # Section shuffle detection loss: binary classification of shuffled segments
+            section_shuffle_loss = self._compute_section_shuffle_loss(output, batch)
+            losses['section_shuffle_loss'] = section_shuffle_loss
+        else:
+            section_shuffle_loss = torch.tensor(0.0, device=doc_loss.device)
+        
+        # Total loss (as per docs formula)
         total_loss = (
             self.config.doc_loss_weight * doc_loss +
-            self.config.span_loss_weight * span_loss
+            self.config.span_loss_weight * span_loss +
+            self.config.mask_denoise_weight * mask_denoise_loss +
+            self.config.section_shuffle_weight * section_shuffle_loss
         )
         
         if self.config.use_act and 'act_loss' in losses:
@@ -154,13 +182,85 @@ class DLPLossComputer:
         losses['total_loss'] = total_loss
         
         return losses
+    
+    def _compute_mask_denoise_loss(self, output: HRMDLPOutput, batch: Dict[str, torch.Tensor]) -> torch.Tensor:
+        """
+        Compute mask-denoise auxiliary loss.
+        
+        The model should predict the original tokens at masked positions.
+        This requires an additional head that predicts vocabulary tokens.
+        """
+        # For now, use span logits as a proxy (this would need a separate vocab head in practice)
+        # This is a simplified implementation
+        if 'mask_positions' in batch and 'mask_targets' in batch:
+            mask_positions = batch['mask_positions']  # [batch, num_masks]
+            mask_targets = batch['mask_targets']      # [batch, num_masks]
+            
+            # Extract logits at masked positions (simplified)
+            # In practice, you'd need a separate vocabulary prediction head
+            batch_size, seq_len, vocab_size = output.span_logits.shape
+            
+            # Use document logits as proxy for token-level prediction (simplified)
+            masked_logits = output.doc_logits.mean(dim=1, keepdim=True).expand(batch_size, mask_targets.size(1))
+            
+            # Convert targets to appropriate range
+            mask_targets_clamped = torch.clamp(mask_targets, 0, output.doc_logits.size(-1) - 1)
+            
+            return self.mask_denoise_criterion(masked_logits.unsqueeze(-1).expand(-1, -1, 4), 
+                                             mask_targets_clamped % 4)
+        
+        return torch.tensor(0.0, device=output.doc_logits.device)
+    
+    def _compute_section_shuffle_loss(self, output: HRMDLPOutput, batch: Dict[str, torch.Tensor]) -> torch.Tensor:
+        """
+        Compute section shuffle detection loss.
+        
+        Binary classification: predict whether document sections were shuffled.
+        """
+        if 'section_shuffle_labels' in batch:
+            # Use CLS token (first token) representation for binary classification
+            shuffle_labels = batch['section_shuffle_labels'].float()  # [batch]
+            
+            # Use first document score as shuffle detection proxy
+            shuffle_logits = output.doc_logits[:, 0]  # [batch]
+            
+            return self.section_shuffle_criterion(shuffle_logits, shuffle_labels)
+        
+        return torch.tensor(0.0, device=output.doc_logits.device)
 
 
 def create_model_and_tokenizer(config: DLPTrainingConfig):
     """Create HRM-DLP model and tokenizer."""
     
-    # Create tokenizer (simple for now - could be replaced with SentencePiece)
-    tokenizer = SimpleTokenizer(vocab_size=config.vocab_size)
+    # Create tokenizer - try SentencePiece first, fall back to SimpleTokenizer
+    try:
+        # Check if we have training data to create a tokenizer
+        tokenizer_model_path = f"{config.checkpoint_dir}/tokenizer.model"
+        if os.path.exists(tokenizer_model_path):
+            # Load existing tokenizer
+            tokenizer_config = TokenizerConfig(vocab_size=config.vocab_size)
+            tokenizer = DLPTokenizer(tokenizer_model_path, tokenizer_config)
+            logger.info(f"Loaded existing tokenizer from {tokenizer_model_path}")
+        else:
+            # Create new tokenizer from training data
+            os.makedirs(config.checkpoint_dir, exist_ok=True)
+            tokenizer_config = TokenizerConfig(vocab_size=config.vocab_size)
+            
+            try:
+                tokenizer = create_tokenizer(
+                    [config.train_path, config.val_path],
+                    f"{config.checkpoint_dir}/tokenizer", 
+                    tokenizer_config
+                )
+                logger.info("Created new SentencePiece tokenizer from training data")
+            except Exception as e:
+                logger.warning(f"Failed to create SentencePiece tokenizer: {e}")
+                logger.info("Falling back to SimpleTokenizer")
+                tokenizer = SimpleTokenizer(vocab_size=config.vocab_size)
+                
+    except ImportError:
+        logger.warning("SentencePiece not available, using SimpleTokenizer")
+        tokenizer = SimpleTokenizer(vocab_size=config.vocab_size)
     
     # Create model config
     model_config = HRMDLPConfig(

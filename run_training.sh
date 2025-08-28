@@ -19,14 +19,14 @@ echo "   Test:  $(wc -l < data/hrm_dlp_final/test.jsonl) examples"
 echo ""
 
 # Check GPU availability
-if command -v nvidia-smi &> /dev/null; then
-    echo "🔧 GPU Information:"
-    nvidia-smi --query-gpu=name,memory.total,memory.free --format=csv,noheader,nounits
-    echo ""
-else
-    echo "⚠️  No GPU detected - training will use CPU (much slower)"
-    echo ""
-fi
+#if command -v nvidia-smi &> /dev/null; then
+#    echo "🔧 GPU Information:"
+#    nvidia-smi --query-gpu=name,memory.total,memory.free --format=csv,noheader,nounits
+#    echo ""
+#else
+#    echo "⚠️  No GPU detected - training will use CPU (much slower)"
+#    echo ""
+#fi
 
 # Create checkpoints directory
 mkdir -p checkpoints/hrm_dlp
