@@ -23,10 +23,10 @@ import logging
 # Add src to path
 sys.path.append(str(Path(__file__).parent / "src"))
 
-from dlp.hrm_model import HRMDLP, HRMDLPConfig, HRMDLPOutput
-from dlp.dataset import DLPDataset, DLPDatasetConfig, create_dataloaders, SimpleTokenizer
-from dlp.act import ACTLoss
-from dlp.dsl import NUM_BIO_TAGS
+from src.dlp.hrm_model import HRMDLP, HRMDLPConfig, HRMDLPOutput
+from src.dlp.dataset import DLPDataset, DLPDatasetConfig, create_dataloaders, SimpleTokenizer
+from src.dlp.act import ACTLoss
+from src.dlp.dsl import NUM_BIO_TAGS
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
