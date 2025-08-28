@@ -368,6 +368,10 @@ def evaluate(model: HRMDLP, dataloader: DataLoader, loss_computer: DLPLossComput
     
     with torch.no_grad():
         for batch in tqdm(dataloader, desc="Evaluating"):
+            # Convert DLPBatch to dictionary if needed
+            if hasattr(batch, '__dict__'):
+                batch = batch.__dict__
+                
             # Move to device
             batch = {k: v.to(config.device) for k, v in batch.items()}
             
@@ -510,6 +514,10 @@ def main():
         
         progress_bar = tqdm(train_loader, desc=f"Epoch {epoch + 1}")
         for batch_idx, batch_dict in enumerate(progress_bar):
+            # Convert DLPBatch to dictionary if needed
+            if hasattr(batch_dict, '__dict__'):
+                batch_dict = batch_dict.__dict__
+            
             # Move batch to device
             batch = {k: v.to(config.device) for k, v in batch_dict.items()}
             
