@@ -116,14 +116,21 @@ def main():
 
 def check_requirements():
     """Check if required dependencies are available."""
-    required_packages = ['torch', 'tqdm', 'wandb', 'hydra-core', 'omegaconf', 'pydantic']
+    required_packages = [
+        ('torch', 'torch'),
+        ('tqdm', 'tqdm'), 
+        ('wandb', 'wandb'),
+        ('hydra-core', 'hydra'),
+        ('omegaconf', 'omegaconf'),
+        ('pydantic', 'pydantic')
+    ]
     missing = []
     
-    for package in required_packages:
+    for package_name, import_name in required_packages:
         try:
-            __import__(package.replace('-', '_'))
+            __import__(import_name)
         except ImportError:
-            missing.append(package)
+            missing.append(package_name)
     
     if missing:
         print("❌ Missing required packages:")
