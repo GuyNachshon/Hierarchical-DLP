@@ -1,0 +1,9 @@
+{"batch_id": "batch_68adcf3f670c81908731f3b512c1ff50", "model": "gpt-5-mini-2025-08-07", "request_count": 400, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756221242320_3194.jsonl"}
+{"batch_id": "batch_68adcf4106288190b351434306f1b7fa", "model": "gpt-5-2025-08-07", "request_count": 400, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756221242331_8620.jsonl"}
+{"batch_id": "batch_68adcf4326308190aa3325c337a11aec", "model": "gpt-4o-2024-08-06", "request_count": 2000, "temperature": 0.7, "file_path": "/tmp/openai_batch_1756221242287_7275.jsonl"}
+{"batch_id": "batch_68ae011dcba4819084a76956f473101d", "model": "gpt-5-mini-2025-08-07", "request_count": 400, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756234008287_7789.jsonl"}
+{"batch_id": "batch_68ae011eda5c8190a58c00435b455e26", "model": "gpt-5-mini-2025-08-07", "request_count": 400, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756234008302_4068.jsonl"}
+{"batch_id": "batch_68ae0120bb2c8190a94fbcf4da804832", "model": "gpt-5-2025-08-07", "request_count": 2000, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756234008222_1166.jsonl"}
+{"batch_id": "batch_68ae14345a888190b855e28346a3be6d", "model": "gpt-5-mini-2025-08-07", "request_count": 400, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756238895484_1143.jsonl"}
+{"batch_id": "batch_68ae143579f081908d23c10c83ddd8c7", "model": "gpt-5-2025-08-07", "request_count": 400, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756238895472_9652.jsonl"}
+{"batch_id": "batch_68ae1437e67c81908af6ffc79292857f", "model": "gpt-5-2025-08-07", "request_count": 2000, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756238895433_2738.jsonl"}

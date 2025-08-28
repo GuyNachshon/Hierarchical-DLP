@@ -361,7 +361,10 @@ def train_hrm_dlp(config: HRMDLPTrainingConfig):
     optimizer = create_optimizer(model, config)
 
     # Mixed precision scaler
-    scaler = torch.cuda.amp.GradScaler(enabled=config.use_amp)
+    if torch.cuda.is_available():
+        scaler = torch.amp.GradScaler('cuda', enabled=config.use_amp)
+    else:
+        scaler = torch.amp.GradScaler('cpu', enabled=False)  # CPU doesn't support amp
 
     # Calculate total steps
     steps_per_epoch = len(train_loader) // config.gradient_accumulation_steps
@@ -371,7 +374,7 @@ def train_hrm_dlp(config: HRMDLPTrainingConfig):
 
     # Initialize wandb
     if config.run_name is None:
-        config.run_name = f"hrm-dlp_{int(time.time())}_bs{config.per_device_batch_size * config.gradient_accumulation_steps}_lr{config.learning_rate:.0e}"
+        config.run_name = f"hrm-dlp_{int(time.time())}_bs{config.per_device_batch_size * config.gradient_accumulation_steps}_lr{float(config.learning_rate):.0e}"
 
     wandb.init(
         project=config.project_name,
