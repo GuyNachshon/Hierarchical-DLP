@@ -1,0 +1,16 @@
+{
+  "split_name": "val",
+  "total_examples": 400,
+  "provider": "openai",
+  "model": "gpt-5-mini-2025-08-07",
+  "batch_count": 1,
+  "agent_distribution": {
+    "obfuscation": 5,
+    "casual": 94,
+    "finance": 39,
+    "security": 9,
+    "clean_business": 201,
+    "legal": 38,
+    "hr": 14
+  }
+}

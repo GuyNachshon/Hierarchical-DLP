@@ -1,0 +1,31 @@
+{
+  "total_examples": 6,
+  "avg_body_length": 235.0,
+  "span_distribution": {
+    "NAME": 84,
+    "PHONE": 3,
+    "EMAIL": 3
+  },
+  "label_distribution": {
+    "sensitivity": 6,
+    "exposure": 6,
+    "context": 0,
+    "obfuscation": 3
+  },
+  "agent_distribution": {
+    "unknown": 6
+  },
+  "channel_distribution": {
+    "Internal Chat (Unsecured)": 3,
+    "Slack": 3
+  },
+  "thread_distribution": {
+    "multi_turn": 1,
+    "single_turn": 5
+  },
+  "file_info": {
+    "file_size_bytes": 10270,
+    "lines_written": 6,
+    "examples_expected": 6
+  }
+}

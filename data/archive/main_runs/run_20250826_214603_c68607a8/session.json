@@ -1,0 +1,21 @@
+{
+  "session_id": "run_20250826_214603_c68607a8",
+  "start_time": 1756233963.911344,
+  "config": {
+    "train_size": 2000,
+    "val_size": 400,
+    "test_size": 400,
+    "output_dir": "data/hrm_dlp_enhanced",
+    "enable_batch_api": true,
+    "max_concurrent_agents": 15
+  },
+  "output_dir": "data/hrm_dlp_enhanced",
+  "splits": [
+    "train",
+    "val",
+    "test"
+  ],
+  "status": "failed",
+  "end_time": 1756238646.1022,
+  "error_message": "'meta'"
+}

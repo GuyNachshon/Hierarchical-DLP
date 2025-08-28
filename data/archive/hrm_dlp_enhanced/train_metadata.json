@@ -1,0 +1,16 @@
+{
+  "split_name": "train",
+  "total_examples": 2000,
+  "provider": "openai",
+  "model": "gpt-4o-2024-08-06",
+  "batch_count": 1,
+  "agent_distribution": {
+    "hr": 296,
+    "security": 305,
+    "legal": 377,
+    "clean_business": 400,
+    "finance": 406,
+    "casual": 174,
+    "obfuscation": 42
+  }
+}

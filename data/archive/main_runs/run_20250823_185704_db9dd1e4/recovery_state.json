@@ -1,0 +1,11 @@
+{
+  "state": "paused_user",
+  "context": {
+    "pause_reason": "Signal 2 received",
+    "pause_timestamp": 1755964630.686759,
+    "active_splits": [],
+    "active_batches": {},
+    "user_intervention_required": true,
+    "recovery_options": []
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "session": {
+    "session_id": "run_20250826_181313_829c0ac1",
+    "start_time": 1756221193.731186,
+    "end_time": 1756223483.6483068,
+    "duration_seconds": 2289.9171209335327,
+    "config": {
+      "train_size": 2000,
+      "val_size": 400,
+      "test_size": 400,
+      "output_dir": "data/hrm_dlp_enhanced",
+      "enable_batch_api": true,
+      "max_concurrent_agents": 15
+    },
+    "version": "v2.2_fixed"
+  },
+  "generation": {
+    "total_examples": 2800,
+    "split_breakdown": {
+      "train": 2000,
+      "val": 400,
+      "test": 400
+    },
+    "quality_stats": {
+      "total_requested": 0,
+      "total_generated": 0,
+      "quality_rejections": 0,
+      "agent_stats": {
+        "legal": {
+          "requested": 0,
+          "generated": 0
+        },
+        "finance": {
+          "requested": 0,
+          "generated": 0
+        },
+        "hr": {
+          "requested": 0,
+          "generated": 0
+        },
+        "security": {
+          "requested": 0,
+          "generated": 0
+        },
+        "casual": {
+          "requested": 0,
+          "generated": 0
+        },
+        "clean_business": {
+          "requested": 0,
+          "generated": 0
+        },
+        "obfuscation": {
+          "requested": 0,
+          "generated": 0
+        }
+      },
+      "split_stats": {
+        "train": 2000,
+        "val": 400,
+        "test": 400
+      },
+      "batch_stats": {
+        "total_batches": 0,
+        "successful_batches": 0,
+        "failed_batches": 0
+      },
+      "model_stats": {
+        "openai/gpt-4o-2024-08-06": 2000,
+        "openai/gpt-5-mini-2025-08-07": 400,
+        "openai/gpt-5-2025-08-07": 400
+      }
+    },
+    "agent_distribution": {
+      "hr": 434,
+      "security": 417,
+      "legal": 546,
+      "clean_business": 559,
+      "finance": 550,
+      "casual": 234,
+      "obfuscation": 60
+    },
+    "model_usage": {
+      "openai/gpt-4o-2024-08-06": {
+        "provider": "openai",
+        "model": "gpt-4o-2024-08-06",
+        "splits": [
+          {
+            "split": "train",
+            "examples": 2000
+          }
+        ],
+        "total_examples": 2000
+      },
+      "openai/gpt-5-mini-2025-08-07": {
+        "provider": "openai",
+        "model": "gpt-5-mini-2025-08-07",
+        "splits": [
+          {
+            "split": "val",
+            "examples": 400
+          }
+        ],
+        "total_examples": 400
+      },
+      "openai/gpt-5-2025-08-07": {
+        "provider": "openai",
+        "model": "gpt-5-2025-08-07",
+        "splits": [
+          {
+            "split": "test",
+            "examples": 400
+          }
+        ],
+        "total_examples": 400
+      }
+    }
+  },
+  "batch_processing": {
+    "strategy": "fixed_one_batch_per_split",
+    "max_batch_size": 140000,
+    "total_batches_created": 3,
+    "model_consistency": "enforced",
+    "batch_details": [
+      {
+        "split": "train",
+        "batch_id": "train_batch_001_openai_gpt-4o-2024-08-06",
+        "provider": "openai",
+        "model": "gpt-4o-2024-08-06",
+        "examples": 2000,
+        "consistent_model": true
+      },
+      {
+        "split": "val",
+        "batch_id": "val_batch_001_openai_gpt-5-mini-2025-08-07",
+        "provider": "openai",
+        "model": "gpt-5-mini-2025-08-07",
+        "examples": 400,
+        "consistent_model": true
+      },
+      {
+        "split": "test",
+        "batch_id": "test_batch_001_openai_gpt-5-2025-08-07",
+        "provider": "openai",
+        "model": "gpt-5-2025-08-07",
+        "examples": 400,
+        "consistent_model": true
+      }
+    ]
+  },
+  "connection_monitoring": {
+    "monitoring_duration": 2274.497115135193,
+    "connection_health": false,
+    "connection_details": {
+      "openai_api": {
+        "status": "failed",
+        "response_time": 14.025667905807495,
+        "error": "Cannot connect to host api.openai.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)')]",
+        "consecutive_failures": 68
+      },
+      "anthropic_api": {
+        "status": "failed",
+        "response_time": 14.11922311782837,
+        "error": "Cannot connect to host api.anthropic.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)')]",
+        "consecutive_failures": 68
+      },
+      "internet_connectivity": {
+        "status": "failed",
+        "response_time": 15.330260038375854,
+        "error": "All test URLs failed",
+        "consecutive_failures": 68
+      }
+    }
+  },
+  "system_info": {
+    "recovery_used": false,
+    "session_stats": {
+      "total_sessions": 16,
+      "active_sessions": 1,
+      "completed_sessions": 9,
+      "failed_sessions": 0,
+      "interrupted_sessions": 6,
+      "oldest_session": 1755964576.6983218,
+      "newest_session": 1756221193.731186
+    },
+    "fixes_applied": [
+      "one_batch_per_split_max_140k",
+      "consistent_model_per_batch",
+      "no_arbitrary_batch_splitting"
+    ]
+  }
+}

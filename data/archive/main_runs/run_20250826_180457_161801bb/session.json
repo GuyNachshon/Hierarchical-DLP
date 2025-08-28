@@ -1,0 +1,21 @@
+{
+  "session_id": "run_20250826_180457_161801bb",
+  "start_time": 1756220697.457091,
+  "config": {
+    "train_size": 2000,
+    "val_size": 400,
+    "test_size": 400,
+    "output_dir": "data/hrm_dlp_enhanced",
+    "enable_batch_api": true,
+    "max_concurrent_agents": 15
+  },
+  "output_dir": "data/hrm_dlp_enhanced",
+  "splits": [
+    "train",
+    "val",
+    "test"
+  ],
+  "status": "interrupted",
+  "end_time": 1756220705.123196,
+  "error_message": "User aborted operations"
+}
