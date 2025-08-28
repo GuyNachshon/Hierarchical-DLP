@@ -1,0 +1,65 @@
+{
+  "train_path": "data/hrm_dlp_final/train.jsonl",
+  "val_path": "data/hrm_dlp_final/val.jsonl", 
+  "test_path": "data/hrm_dlp_final/test.jsonl",
+  
+  "_comment_model": "Model architecture configuration",
+  "vocab_size": 16000,
+  "seq_len": 1024,
+  "hidden_size": 512,
+  
+  "_comment_hrm": "HRM hierarchical reasoning configuration",
+  "H_layers": 4,
+  "L_layers": 4, 
+  "H_cycles": 2,
+  "L_cycles": 2,
+  
+  "_comment_transformer": "Transformer layer configuration",
+  "num_heads": 8,
+  "expansion": 4.0,
+  "rms_norm_eps": 1e-5,
+  "rope_theta": 10000.0,
+  
+  "_comment_dlp": "DLP task head configuration",
+  "num_doc_scores": 4,
+  "memory_vec_dim": 256,
+  
+  "_comment_act": "Adaptive Computation Time configuration", 
+  "use_act": true,
+  "act_max_steps": 4,
+  "act_exploration_prob": 0.1,
+  
+  "_comment_segment": "Segment processing for hierarchical reasoning",
+  "segment_size": 64,
+  
+  "_comment_training": "Training hyperparameters",
+  "batch_size": 16,
+  "learning_rate": 1e-4,
+  "weight_decay": 0.01,
+  "num_epochs": 10,
+  "warmup_steps": 1000,
+  "grad_clip_norm": 1.0,
+  
+  "_comment_dataset": "Dataset processing configuration",
+  "max_length": 1024,
+  "doc_labels": ["sensitivity", "exposure", "context", "obfuscation"],
+  "pad_token_id": 0,
+  "ignore_label_id": -100,
+  
+  "_comment_system": "System and device configuration",
+  "device": "cuda",
+  "forward_dtype": "bfloat16",
+  "num_workers": 4,
+  
+  "_comment_logging": "Logging and checkpointing",
+  "save_every_n_steps": 1000,
+  "eval_every_n_steps": 500,
+  "wandb_project": "hrm-dlp",
+  "wandb_run_name": "hrm_dlp_v1",
+  "checkpoint_dir": "checkpoints/hrm_dlp",
+  
+  "_comment_loss": "Loss function weights",
+  "doc_loss_weight": 1.0,
+  "span_loss_weight": 1.0,
+  "act_loss_weight": 0.1
+}

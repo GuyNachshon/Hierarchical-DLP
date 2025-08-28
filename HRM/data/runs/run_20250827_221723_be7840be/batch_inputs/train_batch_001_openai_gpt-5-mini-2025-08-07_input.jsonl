@@ -1,0 +1,82 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-5-mini-2025-08-07",
+  "request_count": 5,
+  "timestamp": 1365833.81513625,
+  "requests": [
+    {
+      "agent_type": "finance",
+      "risk_level": "low_risk",
+      "scenario_context": "Accounts payable processing through verified supplier payment systems",
+      "target_spans": [
+        "SSN",
+        "PHONE"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a finance domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Accounts payable processing through verified supplier payment systems\nTarget spans: ['SSN', 'PHONE']\nTurns: 1",
+      "_index": 0
+    },
+    {
+      "agent_type": "casual",
+      "risk_level": "low_risk",
+      "scenario_context": "Customer support coordination through authorized customer service channels",
+      "target_spans": [
+        "EMAIL",
+        "NAME"
+      ],
+      "thread_context": null,
+      "conversation_turns": 2,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Customer support coordination through authorized customer service channels\nTarget spans: ['EMAIL', 'NAME']\nTurns: 2",
+      "_index": 1
+    },
+    {
+      "agent_type": "casual",
+      "risk_level": "low_risk",
+      "scenario_context": "General business communication with established external partners and clients",
+      "target_spans": [
+        "EMAIL",
+        "NAME"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: General business communication with established external partners and clients\nTarget spans: ['EMAIL', 'NAME']\nTurns: 1",
+      "_index": 2
+    },
+    {
+      "agent_type": "casual",
+      "risk_level": "medium_risk",
+      "scenario_context": "Project information accidentally shared with external parties without authorization review",
+      "target_spans": [
+        "NAME",
+        "EMAIL"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating medium_risk communication.",
+      "user_prompt": "Scenario: Project information accidentally shared with external parties without authorization review\nTarget spans: ['NAME', 'EMAIL']\nTurns: 1",
+      "_index": 3
+    },
+    {
+      "agent_type": "clean_business",
+      "risk_level": "low_risk",
+      "scenario_context": "General project status updates and coordination without any sensitive information",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: General project status updates and coordination without any sensitive information\nTarget spans: []\nTurns: 1",
+      "_index": 4
+    }
+  ]
+}

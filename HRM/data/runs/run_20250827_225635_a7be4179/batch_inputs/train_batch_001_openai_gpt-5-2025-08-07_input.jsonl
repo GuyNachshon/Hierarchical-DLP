@@ -1,0 +1,25 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-5-2025-08-07",
+  "request_count": 1,
+  "timestamp": 1368190.8497135,
+  "requests": [
+    {
+      "agent_type": "legal",
+      "risk_level": "low_risk",
+      "scenario_context": "IP licensing negotiation with approved external legal advisors",
+      "target_spans": [
+        "NDA",
+        "NAME"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a legal domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: IP licensing negotiation with approved external legal advisors\nTarget spans: ['NDA', 'NAME']\nTurns: 1",
+      "_index": 0
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-4o-2024-08-06",
+  "request_count": 5,
+  "timestamp": 1377751.74978725,
+  "requests": [
+    {
+      "agent_type": "security",
+      "risk_level": "no_risk",
+      "scenario_context": "Access control review with authorized IT security personnel",
+      "target_spans": [
+        "DBURI",
+        "SECRET"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a security domain expert generating no_risk communication.",
+      "user_prompt": "Scenario: Access control review with authorized IT security personnel\nTarget spans: ['DBURI', 'SECRET']\nTurns: 1",
+      "_index": 0
+    },
+    {
+      "agent_type": "finance",
+      "risk_level": "low_risk",
+      "scenario_context": "Invoice submission to approved vendor payment portals within authorization limits",
+      "target_spans": [
+        "SSN",
+        "PAN"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a finance domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Invoice submission to approved vendor payment portals within authorization limits\nTarget spans: ['SSN', 'PAN']\nTurns: 1",
+      "_index": 1
+    },
+    {
+      "agent_type": "finance",
+      "risk_level": "no_risk",
+      "scenario_context": "Financial reporting coordination with authorized external auditing firms",
+      "target_spans": [
+        "PHONE",
+        "PAN"
+      ],
+      "thread_context": null,
+      "conversation_turns": 2,
+      "count": 1,
+      "system_prompt": "You are a finance domain expert generating no_risk communication.",
+      "user_prompt": "Scenario: Financial reporting coordination with authorized external auditing firms\nTarget spans: ['PHONE', 'PAN']\nTurns: 2",
+      "_index": 2
+    },
+    {
+      "agent_type": "clean_business",
+      "risk_level": "high_risk",
+      "scenario_context": "Public meeting scheduling and non-confidential agenda distribution",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating high_risk communication.",
+      "user_prompt": "Scenario: Public meeting scheduling and non-confidential agenda distribution\nTarget spans: []\nTurns: 1",
+      "_index": 3
+    },
+    {
+      "agent_type": "clean_business",
+      "risk_level": "low_risk",
+      "scenario_context": "Public marketing material review and feedback coordination",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Public marketing material review and feedback coordination\nTarget spans: []\nTurns: 1",
+      "_index": 4
+    }
+  ]
+}

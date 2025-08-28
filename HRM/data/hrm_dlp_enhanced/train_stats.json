@@ -1,0 +1,37 @@
+{
+  "total_examples": 33,
+  "avg_body_length": 277.90909090909093,
+  "span_distribution": {
+    "NAME": 501,
+    "PHONE": 12,
+    "SSN": 3,
+    "EMAIL": 9
+  },
+  "label_distribution": {
+    "sensitivity": 33,
+    "exposure": 33,
+    "context": 0,
+    "obfuscation": 9
+  },
+  "agent_distribution": {
+    "unknown": 33
+  },
+  "channel_distribution": {
+    "Internal Chat (Unsecured)": 3,
+    "email": 9,
+    "slack": 6,
+    "SMS": 3,
+    "internal_chat": 6,
+    "chat": 3,
+    "Slack": 3
+  },
+  "thread_distribution": {
+    "multi_turn": 4,
+    "single_turn": 29
+  },
+  "file_info": {
+    "file_size_bytes": 62198,
+    "lines_written": 33,
+    "examples_expected": 33
+  }
+}

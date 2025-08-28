@@ -1,0 +1,22 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-5-mini-2025-08-07",
+  "request_count": 1,
+  "timestamp": 1368250.894890875,
+  "requests": [
+    {
+      "agent_type": "clean_business",
+      "risk_level": "no_risk",
+      "scenario_context": "Public meeting scheduling and non-confidential agenda distribution",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating no_risk communication.",
+      "user_prompt": "Scenario: Public meeting scheduling and non-confidential agenda distribution\nTarget spans: []\nTurns: 1",
+      "_index": 0
+    }
+  ]
+}

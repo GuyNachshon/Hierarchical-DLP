@@ -1,0 +1,34 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-4o-2024-08-06",
+  "request_count": 2,
+  "timestamp": 1367640.386151375,
+  "requests": [
+    {
+      "agent_type": "clean_business",
+      "risk_level": "low_risk",
+      "scenario_context": "Non-confidential team building and administrative communication",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Non-confidential team building and administrative communication\nTarget spans: []\nTurns: 1",
+      "_index": 0
+    },
+    {
+      "agent_type": "clean_business",
+      "risk_level": "low_risk",
+      "scenario_context": "Non-confidential team building and administrative communication",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Non-confidential team building and administrative communication\nTarget spans: []\nTurns: 1",
+      "_index": 1
+    }
+  ]
+}

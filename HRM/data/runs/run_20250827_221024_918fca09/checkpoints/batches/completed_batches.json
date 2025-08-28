@@ -1,0 +1,70 @@
+{
+  "test_batch_001_openai_gpt-4o-2024-08-06": {
+    "batch_id": "test_batch_001_openai_gpt-4o-2024-08-06",
+    "provider": "openai",
+    "model": "gpt-4o-2024-08-06",
+    "request_count": 2,
+    "created_at": 1756321841.222485,
+    "timeout_at": 1756408241.222485,
+    "run_session_id": "run_20250827_221024_918fca09",
+    "split_name": "test",
+    "input_file": "data/runs/run_20250827_221024_918fca09/batch_inputs/test_batch_001_openai_gpt-4o-2024-08-06_input.jsonl",
+    "status": "completed",
+    "request_indices": [
+      0,
+      1
+    ],
+    "results_retrieved": true,
+    "error_message": null
+  },
+  "val_batch_001_openai_gpt-5-mini-2025-08-07": {
+    "batch_id": "val_batch_001_openai_gpt-5-mini-2025-08-07",
+    "provider": "openai",
+    "model": "gpt-5-mini-2025-08-07",
+    "request_count": 3,
+    "created_at": 1756321841.219149,
+    "timeout_at": 1756408241.219149,
+    "run_session_id": "run_20250827_221024_918fca09",
+    "split_name": "val",
+    "input_file": "data/runs/run_20250827_221024_918fca09/batch_inputs/val_batch_001_openai_gpt-5-mini-2025-08-07_input.jsonl",
+    "status": "completed",
+    "request_indices": [
+      0,
+      1,
+      2
+    ],
+    "results_retrieved": true,
+    "error_message": null
+  },
+  "train_batch_001_openai_gpt-5-mini-2025-08-07": {
+    "batch_id": "train_batch_001_openai_gpt-5-mini-2025-08-07",
+    "provider": "openai",
+    "model": "gpt-5-mini-2025-08-07",
+    "request_count": 15,
+    "created_at": 1756321841.2159019,
+    "timeout_at": 1756408241.2159019,
+    "run_session_id": "run_20250827_221024_918fca09",
+    "split_name": "train",
+    "input_file": "data/runs/run_20250827_221024_918fca09/batch_inputs/train_batch_001_openai_gpt-5-mini-2025-08-07_input.jsonl",
+    "status": "completed",
+    "request_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "results_retrieved": true,
+    "error_message": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-4o-2024-08-06",
+  "request_count": 1,
+  "timestamp": 1368771.894280125,
+  "requests": [
+    {
+      "agent_type": "casual",
+      "risk_level": "low_risk",
+      "scenario_context": "Team project updates and milestone coordination through approved collaboration platforms",
+      "target_spans": [
+        "NAME",
+        "EMAIL"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Team project updates and milestone coordination through approved collaboration platforms\nTarget spans: ['NAME', 'EMAIL']\nTurns: 1",
+      "_index": 0
+    }
+  ]
+}

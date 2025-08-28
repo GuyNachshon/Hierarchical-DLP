@@ -1,0 +1,37 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-4o-2024-08-06",
+  "request_count": 2,
+  "timestamp": 1368518.3686875,
+  "requests": [
+    {
+      "agent_type": "clean_business",
+      "risk_level": "low_risk",
+      "scenario_context": "General project status updates and coordination without any sensitive information",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 4,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: General project status updates and coordination without any sensitive information\nTarget spans: []\nTurns: 4",
+      "_index": 0
+    },
+    {
+      "agent_type": "casual",
+      "risk_level": "low_risk",
+      "scenario_context": "Sales outreach communication with prospects using approved marketing platforms",
+      "target_spans": [
+        "EMAIL",
+        "NAME"
+      ],
+      "thread_context": null,
+      "conversation_turns": 2,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Sales outreach communication with prospects using approved marketing platforms\nTarget spans: ['EMAIL', 'NAME']\nTurns: 2",
+      "_index": 1
+    }
+  ]
+}

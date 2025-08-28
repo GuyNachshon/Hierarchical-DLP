@@ -1,0 +1,22 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-5-2025-08-07",
+  "request_count": 1,
+  "timestamp": 1368871.393760708,
+  "requests": [
+    {
+      "agent_type": "clean_business",
+      "risk_level": "no_risk",
+      "scenario_context": "General business communication about non-sensitive operational topics",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating no_risk communication.",
+      "user_prompt": "Scenario: General business communication about non-sensitive operational topics\nTarget spans: []\nTurns: 1",
+      "_index": 0
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "splits": {
+    "train": {
+      "total_examples": 0,
+      "augmentation_ratio": 3.0,
+      "conversion_success_rate": 0.2645,
+      "quality_pass_rate": 0.0,
+      "avg_body_length": 0,
+      "span_distribution": {},
+      "label_distribution": {
+        "sensitivity": 0,
+        "exposure": 0,
+        "context": 0,
+        "obfuscation": 0
+      },
+      "channel_distribution": {},
+      "agent_distribution": {}
+    },
+    "val": {
+      "total_examples": 3,
+      "augmentation_ratio": 3.0,
+      "conversion_success_rate": 0.25,
+      "quality_pass_rate": 0.01,
+      "avg_body_length": 133.0,
+      "span_distribution": {
+        "NAME": 21,
+        "PHONE": 3
+      },
+      "label_distribution": {
+        "sensitivity": 3,
+        "exposure": 3,
+        "context": 0,
+        "obfuscation": 0
+      },
+      "channel_distribution": {
+        "internal_chat": 3
+      },
+      "agent_distribution": {
+        "finance": 3
+      }
+    },
+    "test": {
+      "total_examples": 0,
+      "augmentation_ratio": 3.0,
+      "conversion_success_rate": 0.065,
+      "quality_pass_rate": 0.0,
+      "avg_body_length": 0,
+      "span_distribution": {},
+      "label_distribution": {
+        "sensitivity": 0,
+        "exposure": 0,
+        "context": 0,
+        "obfuscation": 0
+      },
+      "channel_distribution": {},
+      "agent_distribution": {}
+    }
+  },
+  "pipeline_summary": {
+    "total_examples": 3,
+    "avg_augmentation_ratio": 3.0,
+    "avg_conversion_rate": 0.19316666666666668,
+    "avg_quality_rate": 0.0033333333333333335
+  }
+}

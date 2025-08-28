@@ -1,0 +1,40 @@
+{
+  "split_name": "test",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-4o-2024-08-06",
+  "request_count": 2,
+  "timestamp": 1365420.36636925,
+  "requests": [
+    {
+      "agent_type": "casual",
+      "risk_level": "low_risk",
+      "scenario_context": "Meeting scheduling and agenda distribution to verified internal team members",
+      "target_spans": [
+        "EMAIL",
+        "NAME"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Meeting scheduling and agenda distribution to verified internal team members\nTarget spans: ['EMAIL', 'NAME']\nTurns: 1",
+      "_index": 0
+    },
+    {
+      "agent_type": "casual",
+      "risk_level": "medium_risk",
+      "scenario_context": "Project information accidentally shared with external parties without authorization review",
+      "target_spans": [
+        "EMAIL",
+        "NAME"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating medium_risk communication.",
+      "user_prompt": "Scenario: Project information accidentally shared with external parties without authorization review\nTarget spans: ['EMAIL', 'NAME']\nTurns: 1",
+      "_index": 1
+    }
+  ]
+}

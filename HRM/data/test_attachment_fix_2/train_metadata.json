@@ -1,0 +1,12 @@
+{
+  "split_name": "train",
+  "total_examples": 5,
+  "provider": "openai",
+  "model": "gpt-5-mini-2025-08-07",
+  "batch_count": 1,
+  "agent_distribution": {
+    "finance": 1,
+    "casual": 3,
+    "clean_business": 1
+  }
+}

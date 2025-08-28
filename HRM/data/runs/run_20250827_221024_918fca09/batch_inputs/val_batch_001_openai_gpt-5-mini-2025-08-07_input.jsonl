@@ -1,0 +1,52 @@
+{
+  "split_name": "val",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-5-mini-2025-08-07",
+  "request_count": 3,
+  "timestamp": 1365420.362527291,
+  "requests": [
+    {
+      "agent_type": "clean_business",
+      "risk_level": "low_risk",
+      "scenario_context": "Non-confidential team building and administrative communication",
+      "target_spans": [],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a clean_business domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Non-confidential team building and administrative communication\nTarget spans: []\nTurns: 1",
+      "_index": 0
+    },
+    {
+      "agent_type": "security",
+      "risk_level": "no_risk",
+      "scenario_context": "Database access provisioning for approved personnel following security protocols",
+      "target_spans": [
+        "DBURI",
+        "SECRET"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a security domain expert generating no_risk communication.",
+      "user_prompt": "Scenario: Database access provisioning for approved personnel following security protocols\nTarget spans: ['DBURI', 'SECRET']\nTurns: 1",
+      "_index": 1
+    },
+    {
+      "agent_type": "casual",
+      "risk_level": "low_risk",
+      "scenario_context": "Customer support coordination through authorized customer service channels",
+      "target_spans": [
+        "EMAIL",
+        "NAME"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating low_risk communication.",
+      "user_prompt": "Scenario: Customer support coordination through authorized customer service channels\nTarget spans: ['EMAIL', 'NAME']\nTurns: 1",
+      "_index": 2
+    }
+  ]
+}

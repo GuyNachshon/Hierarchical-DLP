@@ -1,0 +1,23 @@
+{
+  "total_examples": 3,
+  "augmentation_ratio": 3.0,
+  "conversion_success_rate": 0.25,
+  "quality_pass_rate": 0.01,
+  "avg_body_length": 133.0,
+  "span_distribution": {
+    "NAME": 21,
+    "PHONE": 3
+  },
+  "label_distribution": {
+    "sensitivity": 3,
+    "exposure": 3,
+    "context": 0,
+    "obfuscation": 0
+  },
+  "channel_distribution": {
+    "internal_chat": 3
+  },
+  "agent_distribution": {
+    "finance": 3
+  }
+}

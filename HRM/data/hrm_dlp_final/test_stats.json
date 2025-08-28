@@ -1,0 +1,16 @@
+{
+  "total_examples": 0,
+  "augmentation_ratio": 3.0,
+  "conversion_success_rate": 0.065,
+  "quality_pass_rate": 0.0,
+  "avg_body_length": 0,
+  "span_distribution": {},
+  "label_distribution": {
+    "sensitivity": 0,
+    "exposure": 0,
+    "context": 0,
+    "obfuscation": 0
+  },
+  "channel_distribution": {},
+  "agent_distribution": {}
+}

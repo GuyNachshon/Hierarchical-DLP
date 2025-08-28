@@ -1,0 +1,10 @@
+{
+  "split_name": "test",
+  "total_examples": 1,
+  "provider": "openai",
+  "model": "gpt-5-2025-08-07",
+  "batch_count": 1,
+  "agent_distribution": {
+    "clean_business": 1
+  }
+}

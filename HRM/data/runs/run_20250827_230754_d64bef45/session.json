@@ -1,0 +1,21 @@
+{
+  "session_id": "run_20250827_230754_d64bef45",
+  "start_time": 1756325274.928735,
+  "config": {
+    "train_size": 1,
+    "val_size": 0,
+    "test_size": 0,
+    "output_dir": "data/final_test",
+    "enable_batch_api": false,
+    "max_concurrent_agents": 10
+  },
+  "output_dir": "data/final_test",
+  "splits": [
+    "train",
+    "val",
+    "test"
+  ],
+  "status": "completed",
+  "end_time": 1756325306.079227,
+  "error_message": null
+}

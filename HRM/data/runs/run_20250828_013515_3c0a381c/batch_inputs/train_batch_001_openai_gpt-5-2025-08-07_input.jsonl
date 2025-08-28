@@ -1,0 +1,25 @@
+{
+  "split_name": "train",
+  "batch_num": 1,
+  "provider": "openai",
+  "model": "gpt-5-2025-08-07",
+  "request_count": 1,
+  "timestamp": 1377705.911646041,
+  "requests": [
+    {
+      "agent_type": "casual",
+      "risk_level": "no_risk",
+      "scenario_context": "Meeting scheduling and agenda distribution to verified internal team members",
+      "target_spans": [
+        "EMAIL",
+        "NAME"
+      ],
+      "thread_context": null,
+      "conversation_turns": 1,
+      "count": 1,
+      "system_prompt": "You are a casual domain expert generating no_risk communication.",
+      "user_prompt": "Scenario: Meeting scheduling and agenda distribution to verified internal team members\nTarget spans: ['EMAIL', 'NAME']\nTurns: 1",
+      "_index": 0
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "train_batch_001_openai_gpt-5-2025-08-07": {
+    "batch_id": "train_batch_001_openai_gpt-5-2025-08-07",
+    "provider": "openai",
+    "model": "gpt-5-2025-08-07",
+    "request_count": 1,
+    "created_at": 1756325080.761197,
+    "timeout_at": 1756411480.761197,
+    "run_session_id": "run_20250827_230421_0747fa6d",
+    "split_name": "train",
+    "input_file": "data/runs/run_20250827_230421_0747fa6d/batch_inputs/train_batch_001_openai_gpt-5-2025-08-07_input.jsonl",
+    "status": "completed",
+    "request_indices": [
+      0
+    ],
+    "results_retrieved": true,
+    "error_message": null
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "split_name": "train",
+  "total_examples": 2,
+  "provider": "openai",
+  "model": "gpt-4o-2024-08-06",
+  "batch_count": 1,
+  "agent_distribution": {
+    "clean_business": 2
+  }
+}

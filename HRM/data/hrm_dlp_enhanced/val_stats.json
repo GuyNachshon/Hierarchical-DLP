@@ -1,0 +1,31 @@
+{
+  "total_examples": 9,
+  "avg_body_length": 288.0,
+  "span_distribution": {
+    "NAME": 141,
+    "PHONE": 3
+  },
+  "label_distribution": {
+    "sensitivity": 9,
+    "exposure": 9,
+    "context": 0,
+    "obfuscation": 3
+  },
+  "agent_distribution": {
+    "unknown": 9
+  },
+  "channel_distribution": {
+    "internal_chat": 3,
+    "slack": 3,
+    "email": 3
+  },
+  "thread_distribution": {
+    "multi_turn": 0,
+    "single_turn": 9
+  },
+  "file_info": {
+    "file_size_bytes": 17350,
+    "lines_written": 9,
+    "examples_expected": 9
+  }
+}
