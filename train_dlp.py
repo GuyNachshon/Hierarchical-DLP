@@ -142,12 +142,22 @@ class DLPLossComputer:
         
         # ACT loss if enabled
         if self.config.use_act and hasattr(output, 'q_halt_logits'):
-            act_loss_value = self.act_loss(
+            # Create dummy correctness and valid mask for ACT loss
+            batch_size = output.q_halt_logits.shape[0]
+            is_correct = torch.ones(batch_size, dtype=torch.bool, device=output.q_halt_logits.device)
+            valid_mask = torch.ones(batch_size, dtype=torch.bool, device=output.q_halt_logits.device)
+            
+            act_losses = self.act_loss.compute_act_losses(
                 output.q_halt_logits,
                 output.q_continue_logits,
+                output.target_q_continue if output.target_q_continue is not None else torch.zeros_like(output.q_halt_logits),
                 output.steps,
-                target_q_continue=output.target_q_continue
+                is_correct,
+                valid_mask
             )
+            
+            # Sum all ACT loss components
+            act_loss_value = sum(act_losses.values()) / batch_size  # Normalize by batch size
             losses['act_loss'] = act_loss_value
         
         # Auxiliary losses (as per docs: 0.3*mask-denoise + 0.2*section-shuffle)
