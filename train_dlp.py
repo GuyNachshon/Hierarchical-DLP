@@ -124,10 +124,7 @@ class DLPLossComputer:
         self.section_shuffle_criterion = nn.BCEWithLogitsLoss()
         
         if config.use_act:
-            self.act_loss = ACTLoss(
-                max_steps=config.act_max_steps,
-                exploration_prob=config.act_exploration_prob
-            )
+            self.act_loss = ACTLoss(ponder_weight=0.1)
     
     def compute_loss(self, output: HRMDLPOutput, batch: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
         """Compute all DLP losses."""
