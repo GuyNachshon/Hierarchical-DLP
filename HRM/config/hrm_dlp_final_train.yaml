@@ -1,0 +1,79 @@
+# HRM-DLP Final Training Configuration
+# Using the clean, high-quality dataset with rich attachment metadata
+
+# Data settings - Updated to use your final clean dataset
+data_path: ../data/hrm_dlp_final
+tokenizer_path: null  # Will use simple tokenizer if not provided
+max_length: 1024
+
+# Model architecture
+arch:
+  name: HRM_DLP  # Specify the model architecture
+  hidden_size: 384
+  num_heads: 6
+  H_layers: 4
+  L_layers: 4
+  H_cycles: 2
+  L_cycles: 2
+  expansion: 4.0
+  pos_encodings: rope
+  
+  # DLP-specific parameters
+  num_doc_labels: 4      # Document-level classification labels
+  num_bio_tags: 21       # BIO tagging for span extraction
+  memory_dim: 256        # Memory dimension for hierarchical reasoning
+  use_fusion_gates: true # Enable fusion gates for multi-level reasoning
+  
+  # Loss configuration
+  loss:
+    name: HRM_DLP_Loss
+  
+  # Training behavior
+  use_act: false         # Deterministic inference
+  forward_dtype: bfloat16
+
+# Training hyperparameters - Optimized for your dataset size (228 examples)
+global_batch_size: 32   # Reduced for smaller dataset
+epochs: 10              # More epochs for smaller dataset
+lr: 1e-4               # Lower learning rate for fine-tuning
+lr_min_ratio: 0.1
+lr_warmup_steps: 100    # Reduced warmup for smaller dataset
+weight_decay: 0.01      # Reduced weight decay
+beta1: 0.9
+beta2: 0.95
+
+# Loss weights - Balanced for DLP tasks
+# L = BCE(doc) + CE(BIO) + 0.3*MaskDenoise + 0.2*SectionShuffle
+doc_loss_weight: 1.0           # Document classification
+span_loss_weight: 1.0          # Span extraction (BIO tagging)
+mask_denoise_weight: 0.3       # Self-supervised mask denoising
+section_shuffle_weight: 0.2    # Section shuffle pre-training task
+label_smoothing: 0.05          # Label smoothing for generalization
+
+# Evaluation settings
+eval_interval: 50              # More frequent evaluation for small dataset
+checkpoint_every_eval: true
+eval_save_outputs: ["spans", "labels"]  # Save span and label predictions
+
+# Experiment tracking
+project_name: hrm-dlp-final
+run_name: rich_attachments_v1  # Descriptive run name
+checkpoint_path: checkpoints/hrm_dlp_final  # Checkpoint save path
+
+# System settings
+seed: 42
+num_workers: 4
+
+# Additional settings for your specific dataset
+data_config:
+  # Rich attachment metadata fields to utilize
+  use_attachment_features: true
+  attachment_embedding_dim: 64
+  
+  # DLP-specific features from your enhanced dataset
+  use_sensitivity_indicators: true
+  use_content_summaries: true
+  
+  # Quality filtering (your dataset already has high-quality examples)
+  min_span_length: 1
+  max_span_length: 50

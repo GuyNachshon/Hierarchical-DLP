@@ -1,0 +1,58 @@
+# DLP Training Configuration
+
+# Data settings
+data_path: data/dlp_synth
+tokenizer_path: null  # Will use simple tokenizer if not provided
+max_length: 1024
+
+# Model architecture
+arch:
+  hidden_size: 384
+  num_heads: 6
+  H_layers: 4
+  L_layers: 4
+  H_cycles: 2
+  L_cycles: 2
+  expansion: 4.0
+  pos_encodings: rope
+  
+  # DLP-specific
+  num_doc_labels: 4
+  num_bio_tags: 21
+  memory_dim: 256
+  use_fusion_gates: true
+  
+  # Training behavior
+  use_act: false  # Deterministic inference
+  forward_dtype: bfloat16
+
+# Training hyperparameters
+global_batch_size: 768
+epochs: 2
+lr: 3e-4
+lr_min_ratio: 0.1
+lr_warmup_steps: 3000
+weight_decay: 0.02
+beta1: 0.9
+beta2: 0.95
+
+# Loss weights (L = BCE(doc) + CE(BIO) + 0.3*MaskDenoise + 0.2*SectionShuffle)
+doc_loss_weight: 1.0
+span_loss_weight: 1.0
+mask_denoise_weight: 0.3
+section_shuffle_weight: 0.2
+label_smoothing: 0.05
+
+# Evaluation
+eval_interval: 1000
+checkpoint_every_eval: true
+eval_save_outputs: []
+
+# Experiment tracking
+project_name: hrm-dlp
+run_name: null  # Auto-generated if not provided
+checkpoint_path: null  # Auto-generated if not provided
+
+# System
+seed: 42
+num_workers: 4

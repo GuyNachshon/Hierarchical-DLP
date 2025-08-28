@@ -1,0 +1,6 @@
+{"batch_id": "batch_68af897e03088190a8ac91e4219f10d0", "model": "gpt-5-mini-2025-08-07", "request_count": 300, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756334457805_9790.jsonl"}
+{"batch_id": "batch_68af897e1c588190bbd31287210be16e", "model": "gpt-5-mini-2025-08-07", "request_count": 300, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756334457815_2343.jsonl"}
+{"batch_id": "batch_68af89822c988190a0355868109c747c", "model": "gpt-5-mini-2025-08-07", "request_count": 2000, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756334457767_8846.jsonl"}
+{"batch_id": "batch_68b01daabcc4819086d75dc7d50426e4", "model": "gpt-5-mini-2025-08-07", "request_count": 400, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756372389970_6891.jsonl"}
+{"batch_id": "batch_68b01daaec248190b09a8d3bcadc815c", "model": "gpt-4o-mini-2024-07-18", "request_count": 400, "temperature": 0.7, "file_path": "/tmp/openai_batch_1756372389900_2009.jsonl"}
+{"batch_id": "batch_68b01daeea88819097c2a3361c6fb6f6", "model": "gpt-5-2025-08-07", "request_count": 2000, "temperature": 1.0, "file_path": "/tmp/openai_batch_1756372389702_3118.jsonl"}
