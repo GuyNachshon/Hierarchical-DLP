@@ -43,6 +43,11 @@ echo "   Before: All decisions were WARN/MEDIUM"
 echo "   After:  Proper BLOCK/WARN/ALLOW distribution"
 echo "   Before: No discrimination between examples"
 echo "   After:  Clear risk level distinctions"
+echo ""
+echo "✅ Schema Fix Applied:"
+echo "   • Fixed Pydantic schema to accept float labels (0.0-1.0)"
+echo "   • BCEWithLogitsLoss supports nuanced risk scoring"
+echo "   • No more validation errors during training"
 
 # Backup previous checkpoint if exists
 if [ -d "checkpoints/hrm_dlp" ]; then

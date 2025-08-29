@@ -29,7 +29,7 @@ class DLPExample(pydantic.BaseModel):
     body: str = ""
     attachments: List[Union[str, Dict[str, Any]]] = pydantic.Field(default_factory=list)
     links: Union[List[Union[str, Dict[str, Any]]], Dict[str, Any], None] = pydantic.Field(default_factory=list)
-    labels: Dict[str, int] = pydantic.Field(default_factory=dict)
+    labels: Dict[str, float] = pydantic.Field(default_factory=dict)
     spans: List[Dict[str, Any]] = pydantic.Field(default_factory=list)
     meta: Dict[str, Any] = pydantic.Field(default_factory=dict)
 
