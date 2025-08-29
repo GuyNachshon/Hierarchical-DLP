@@ -1,7 +1,7 @@
 {
-  "train_path": "data/hrm_dlp_final/train.jsonl",
-  "val_path": "data/hrm_dlp_final/val.jsonl", 
-  "test_path": "data/hrm_dlp_final/test.jsonl",
+  "train_path": "data/hrm_dlp_final/train_labeled.jsonl",
+  "val_path": "data/hrm_dlp_final/val_labeled.jsonl", 
+  "test_path": "data/hrm_dlp_final/test_labeled.jsonl",
   
   "_comment_model": "Model architecture configuration",
   "vocab_size": 16000,
