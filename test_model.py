@@ -53,7 +53,7 @@ class HRMDLPTester:
                 "use_act": True,
                 "act_max_steps": 4,
                 "segment_size": 64,
-                "forward_dtype": "bfloat16" if self.device.type == 'cuda' else "float32"
+                "forward_dtype": "float32"  # Use float32 for inference compatibility
             }
         
         # Create model config
