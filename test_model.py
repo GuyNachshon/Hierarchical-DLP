@@ -88,6 +88,8 @@ class HRMDLPTester:
             logger.warning(f"Checkpoint {checkpoint_path} not found, using random weights")
         
         model = model.to(self.device)
+        # Convert to float32 for inference compatibility
+        model = model.float()
         model.eval()
         
         total_params = sum(p.numel() for p in model.parameters())
