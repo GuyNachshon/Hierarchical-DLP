@@ -1,0 +1,217 @@
+{
+  "summary": {
+    "rule_based_examples": 2,
+    "llm_examples": 2,
+    "comparison_date": "2025-08-29T21:13:31"
+  },
+  "rule_based_stats": {
+    "sensitivity": {
+      "mean": 0.7,
+      "std": 0.10000000000000003,
+      "min": 0.6,
+      "max": 0.8,
+      "range": 0.20000000000000007,
+      "count": 2
+    },
+    "exposure": {
+      "mean": 0.35,
+      "std": 0.05000000000000002,
+      "min": 0.3,
+      "max": 0.4,
+      "range": 0.10000000000000003,
+      "count": 2
+    },
+    "context": {
+      "mean": 0.2,
+      "std": 0.0,
+      "min": 0.2,
+      "max": 0.2,
+      "range": 0.0,
+      "count": 2
+    },
+    "obfuscation": {
+      "mean": 0.1,
+      "std": 0.0,
+      "min": 0.1,
+      "max": 0.1,
+      "range": 0.0,
+      "count": 2
+    }
+  },
+  "llm_stats": {
+    "sensitivity": {
+      "mean": 0.6,
+      "std": 0.30000000000000004,
+      "min": 0.3,
+      "max": 0.9,
+      "range": 0.6000000000000001,
+      "count": 2
+    },
+    "exposure": {
+      "mean": 0.45,
+      "std": 0.35,
+      "min": 0.1,
+      "max": 0.8,
+      "range": 0.7000000000000001,
+      "count": 2
+    },
+    "context": {
+      "mean": 0.5,
+      "std": 0.4,
+      "min": 0.1,
+      "max": 0.9,
+      "range": 0.8,
+      "count": 2
+    },
+    "obfuscation": {
+      "mean": 0.15,
+      "std": 0.15,
+      "min": 0.0,
+      "max": 0.3,
+      "range": 0.3,
+      "count": 2
+    }
+  },
+  "distribution_comparison": {
+    "obfuscation": {
+      "correlation": NaN,
+      "mean_difference": 0.04999999999999999,
+      "std_difference": 0.15,
+      "range_difference": 0.3,
+      "rule_stats": {
+        "mean": 0.1,
+        "std": 0.0,
+        "range": 0.0
+      },
+      "llm_stats": {
+        "mean": 0.15,
+        "std": 0.15,
+        "range": 0.3
+      }
+    },
+    "exposure": {
+      "correlation": 1.0,
+      "mean_difference": 0.10000000000000003,
+      "std_difference": 0.29999999999999993,
+      "range_difference": 0.6000000000000001,
+      "rule_stats": {
+        "mean": 0.35,
+        "std": 0.05000000000000002,
+        "range": 0.10000000000000003
+      },
+      "llm_stats": {
+        "mean": 0.45,
+        "std": 0.35,
+        "range": 0.7000000000000001
+      }
+    },
+    "sensitivity": {
+      "correlation": -1.0,
+      "mean_difference": -0.09999999999999998,
+      "std_difference": 0.2,
+      "range_difference": 0.4,
+      "rule_stats": {
+        "mean": 0.7,
+        "std": 0.10000000000000003,
+        "range": 0.20000000000000007
+      },
+      "llm_stats": {
+        "mean": 0.6,
+        "std": 0.30000000000000004,
+        "range": 0.6000000000000001
+      }
+    },
+    "context": {
+      "correlation": NaN,
+      "mean_difference": 0.3,
+      "std_difference": 0.4,
+      "range_difference": 0.8,
+      "rule_stats": {
+        "mean": 0.2,
+        "std": 0.0,
+        "range": 0.0
+      },
+      "llm_stats": {
+        "mean": 0.5,
+        "std": 0.4,
+        "range": 0.8
+      }
+    }
+  },
+  "contextual_analysis": {
+    "disagreement_cases": 2,
+    "top_differences": [
+      {
+        "index": 1,
+        "subject": "Found some interesting salary data!",
+        "user": {
+          "role": "INTERN",
+          "dept": "MARKETING"
+        },
+        "recipients": [
+          "friend@gmail.com"
+        ],
+        "rule_risk": 0.325,
+        "llm_risk": 0.725,
+        "risk_difference": 0.39999999999999997,
+        "rule_labels": {
+          "sensitivity": 0.6,
+          "exposure": 0.4,
+          "context": 0.2,
+          "obfuscation": 0.1
+        },
+        "llm_labels": {
+          "sensitivity": 0.9,
+          "exposure": 0.8,
+          "context": 0.9,
+          "obfuscation": 0.3
+        },
+        "contextual_factors": [
+          "Junior role + external recipients"
+        ],
+        "llm_reasoning": {
+          "sensitivity": "Very high - inappropriate sharing of confidential salary data",
+          "exposure": "High - personal Gmail account inappropriate for business data",
+          "context": "Very high - intern has no justification for accessing salary data",
+          "obfuscation": "Moderate - casual tone suggests lack of awareness"
+        }
+      },
+      {
+        "index": 0,
+        "subject": "Board meeting financial summary",
+        "user": {
+          "role": "CFO",
+          "dept": "FINANCE"
+        },
+        "recipients": [
+          "board@company.com"
+        ],
+        "rule_risk": 0.35000000000000003,
+        "llm_risk": 0.125,
+        "risk_difference": 0.22500000000000003,
+        "rule_labels": {
+          "sensitivity": 0.8,
+          "exposure": 0.3,
+          "context": 0.2,
+          "obfuscation": 0.1
+        },
+        "llm_labels": {
+          "sensitivity": 0.3,
+          "exposure": 0.1,
+          "context": 0.1,
+          "obfuscation": 0.0
+        },
+        "contextual_factors": [
+          "Business context present",
+          "Senior role + internal recipients"
+        ],
+        "llm_reasoning": {
+          "sensitivity": "Low - appropriate business context for CFO sharing with board",
+          "exposure": "Very low - appropriate recipients for financial data",
+          "context": "Very low - perfect role-based access",
+          "obfuscation": "None - transparent business communication"
+        }
+      }
+    ]
+  }
+}

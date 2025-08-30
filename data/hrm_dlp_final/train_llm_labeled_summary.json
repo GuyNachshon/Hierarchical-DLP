@@ -1,0 +1,19 @@
+{
+  "input_file": "data/hrm_dlp_final/train_labeled.jsonl",
+  "output_file": "data/hrm_dlp_final/train_llm_labeled.jsonl",
+  "total_examples": 1854,
+  "processing_stats": {
+    "total_requests": 1854,
+    "successful_requests": 417,
+    "error_count": 1437,
+    "success_rate": 22.491909385113267,
+    "total_cost": 0.5072891999999988,
+    "average_cost_per_request": 0.00027361877022653657
+  },
+  "config": {
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "temperature": 0.1
+  },
+  "timestamp": "2025-08-30T04:56:46.778253"
+}

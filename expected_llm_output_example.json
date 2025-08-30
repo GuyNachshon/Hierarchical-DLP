@@ -1,0 +1,60 @@
+{
+  "sample_email_analysis": {
+    "input": {
+      "user_role": "CONTRACTOR", 
+      "user_dept": "TEMP",
+      "recipients": ["potential-client@competitor.com"],
+      "subject": "Portfolio example for next client",
+      "body": "Here's some authentication code I worked on. Shows API key rotation and password hashing techniques. Database connection code might be useful for your next project."
+    },
+    "rule_based_labels_would_be": {
+      "sensitivity": 0.45,
+      "exposure": 0.35, 
+      "context": 0.25,
+      "obfuscation": 0.15,
+      "note": "Rule-based focuses on detecting 'API key' and 'password' patterns"
+    },
+    "expected_llm_labels": {
+      "sensitivity": 0.85,
+      "exposure": 0.90,
+      "context": 0.80,
+      "obfuscation": 0.25,
+      "reasoning": {
+        "sensitivity": "Very high - sharing proprietary authentication code with external competitor represents significant IP/trade secret risk",
+        "exposure": "Extremely high - contractor sharing with competitor email domain creates direct competitive threat",
+        "context": "High - temporary contractor lacks business justification for sharing internal security implementations",
+        "obfuscation": "Low-moderate - casual tone suggests poor security awareness rather than malicious intent"
+      }
+    },
+    "strategic_difference": "LLM recognizes the BUSINESS CONTEXT (contractor→competitor) that makes this extremely risky, while rules only see technical keywords"
+  },
+  
+  "training_improvement_prediction": {
+    "current_problem": "High validation loss (6.45) indicates overfitting to rule-based pattern detection",
+    "llm_solution": {
+      "better_generalization": "LLM labels teach business appropriateness, not just patterns",
+      "wider_discrimination": "Risk scores will span 0.1-0.9 range instead of clustering around 0.5",
+      "contextual_learning": "Model learns role-based access appropriateness",
+      "strategic_alignment": "Complements regex detection with business intelligence"
+    },
+    "expected_results": {
+      "validation_loss": "Should decrease significantly due to better generalization",
+      "discrimination": "Risk scores will vary meaningfully based on business context", 
+      "business_value": "Model becomes useful for strategic DLP beyond pattern matching"
+    }
+  },
+
+  "comparison_metrics": {
+    "rule_vs_llm_differences": {
+      "correlation": "Expected: 0.3-0.5 (complementary, not duplicate)",
+      "discrimination_range": {
+        "rule_based": "0.2-0.8 (pattern focused)",
+        "llm_based": "0.0-0.9 (context focused)" 
+      },
+      "strategic_focus": {
+        "rule_based": "What data patterns exist?",
+        "llm_based": "Is this business-appropriate sharing?"
+      }
+    }
+  }
+}
